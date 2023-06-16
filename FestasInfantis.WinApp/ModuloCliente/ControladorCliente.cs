@@ -26,26 +26,6 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
         public override bool VisualizarAlugueisHabilitado { get { return true; } }
 
-        public void VisualizarAlugueis()
-        {
-            Cliente Cliente = ObterClienteSelecionado();
-
-            if (Cliente == null)
-            {
-                MessageBox.Show($"Selecione um Cliente primeiro!",
-                    "Edição de Clientes",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
-                return;
-            }
-
-            TelaAlugueisClienteForm telaCliente = new TelaAlugueisClienteForm();
-            telaCliente.ConfigurarTela(Cliente);
-
-            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
-        }
-
         public override void Inserir()
         {
             TelaClienteForm telaCliente = new TelaClienteForm();
@@ -87,6 +67,24 @@ namespace FestasInfantis.WinApp.ModuloCliente
             }
 
             CarregarClientes();
+        }
+
+        public void VisualizarAlugueis()
+        {
+            Cliente Cliente = ObterClienteSelecionado();
+
+            if (Cliente == null)
+            {
+                MessageBox.Show($"Selecione um Cliente primeiro!",
+                    "Visualização de Aluguéis do Cliente",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            TelaAlugueisClienteForm telaCliente = new TelaAlugueisClienteForm();
+            telaCliente.ConfigurarTela(Cliente);
         }
 
         private Cliente ObterClienteSelecionado()
