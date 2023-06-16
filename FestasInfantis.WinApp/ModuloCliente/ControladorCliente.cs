@@ -26,6 +26,26 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
         public override bool VisualizarAlugueisHabilitado { get { return true; } }
 
+        public void VisualizarAlugueis()
+        {
+            Cliente Cliente = ObterClienteSelecionado();
+
+            if (Cliente == null)
+            {
+                MessageBox.Show($"Selecione um cliente primeiro!",
+                    "Visualização de Alguéis do Cliente",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            TelaAlugueisClienteForm telaCliente = new TelaAlugueisClienteForm();
+            telaCliente.ConfigurarTela(Cliente);
+
+            telaCliente.ShowDialog();
+        }
+
         public override void Inserir()
         {
             TelaClienteForm telaCliente = new TelaClienteForm();
@@ -47,7 +67,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             if (Cliente == null)
             {
-                MessageBox.Show($"Selecione um Cliente primeiro!",
+                MessageBox.Show($"Selecione um cliente primeiro!",
                     "Edição de Clientes",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -69,24 +89,6 @@ namespace FestasInfantis.WinApp.ModuloCliente
             CarregarClientes();
         }
 
-        public void VisualizarAlugueis()
-        {
-            Cliente Cliente = ObterClienteSelecionado();
-
-            if (Cliente == null)
-            {
-                MessageBox.Show($"Selecione um Cliente primeiro!",
-                    "Visualização de Aluguéis do Cliente",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
-                return;
-            }
-
-            TelaAlugueisClienteForm telaCliente = new TelaAlugueisClienteForm();
-            telaCliente.ConfigurarTela(Cliente);
-        }
-
         private Cliente ObterClienteSelecionado()
         {
             int id = tabelaCliente.ObterIdSelecionado();
@@ -100,7 +102,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             if (Cliente == null)
             {
-                MessageBox.Show($"Selecione um Cliente primeiro!",
+                MessageBox.Show($"Selecione um cliente primeiro!",
                     "Exclusão de Clientes",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -108,7 +110,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o Cliente {Cliente.nome}?", "Exclusão de Clientes",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o cliente {Cliente.nome}?", "Exclusão de Clientes",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
