@@ -21,8 +21,6 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             string nome = txtNome.Text;
 
-            decimal valor = txtValor.Value;
-
             List<Item> itens = new List<Item>();
 
             foreach (DataGridViewRow linha in gridItens.Rows)
@@ -31,7 +29,7 @@ namespace FestasInfantis.WinApp.ModuloTema
                 itens.Add(itemSelecionado);
             }
 
-            Tema tema = new Tema(nome, valor, itens);
+            Tema tema = new Tema(nome, itens);
 
             if (id > 0)
                 tema.id = id;
@@ -86,7 +84,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             txtNome.Text = tema.Nome;
 
-            txtValor.Value = tema.Valor;
+            txtValor.Text = tema.Valor.ToString();
 
             gridItens.Rows.Clear();
 

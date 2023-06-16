@@ -185,8 +185,8 @@ namespace FestasInfantis.WinApp
 
             Festa festa1 = new Festa(new Endereco("Clube Princesa", "Lages", 25), DateTime.Now, new TimeSpan(), new TimeSpan());
             Festa festa2 = new Festa(new Endereco("Clube Caça e Tiro", "Lages", 110), DateTime.Now, new TimeSpan(), new TimeSpan());
-            Tema tema1 = new Tema("Homem-Aranha", 500, new List<Item>());
-            Tema tema2 = new Tema("Branca de Neve", 650, new List<Item>());
+            Tema tema1 = new Tema("Homem-Aranha", new List<Item>());
+            Tema tema2 = new Tema("Branca de Neve", new List<Item>());
 
             Cliente cliente = new Cliente(1, "Tiago Santini", "49 98505-6251");
 
@@ -218,7 +218,7 @@ namespace FestasInfantis.WinApp
         {
             List<Tema> temas = new List<Tema>();
 
-            Tema tema1 = new Tema(1, "Festa de Casamento", 50, ConfigurarRegistrosItens());
+            Tema tema1 = new Tema(1, "Festa de Casamento", ConfigurarRegistrosItens());
             temas.Add(tema1);
 
             return temas;

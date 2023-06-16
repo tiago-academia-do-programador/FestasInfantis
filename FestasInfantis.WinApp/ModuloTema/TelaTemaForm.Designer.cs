@@ -37,13 +37,12 @@
             lblValor = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            txtValor = new NumericUpDown();
             tabPage2 = new TabPage();
             btnSelecionarItens = new Button();
             gridItens = new DataGridView();
+            txtValor = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtValor).BeginInit();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridItens).BeginInit();
             SuspendLayout();
@@ -140,15 +139,6 @@
             tabPage1.Text = "Dados Básicos";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtValor
-            // 
-            txtValor.Location = new Point(89, 93);
-            txtValor.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-            txtValor.Name = "txtValor";
-            txtValor.Size = new Size(66, 23);
-            txtValor.TabIndex = 14;
-            txtValor.ThousandsSeparator = true;
-            // 
             // tabPage2
             // 
             tabPage2.Controls.Add(btnSelecionarItens);
@@ -180,6 +170,16 @@
             gridItens.Size = new Size(418, 240);
             gridItens.TabIndex = 0;
             // 
+            // txtValor
+            // 
+            txtValor.Enabled = false;
+            txtValor.Location = new Point(89, 91);
+            txtValor.Name = "txtValor";
+            txtValor.ReadOnly = true;
+            txtValor.Size = new Size(67, 23);
+            txtValor.TabIndex = 11;
+            txtValor.Text = "0";
+            // 
             // TelaTemaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -196,7 +196,6 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)txtValor).EndInit();
             tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridItens).EndInit();
             ResumeLayout(false);
@@ -214,8 +213,8 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private NumericUpDown txtValor;
         private Button btnSelecionarItens;
         private DataGridView gridItens;
+        private TextBox txtValor;
     }
 }
