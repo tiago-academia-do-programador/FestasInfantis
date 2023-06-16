@@ -1,5 +1,4 @@
-﻿using FestasInfantis.Dominio.ModuloAluguel;
-using FestasInfantis.Dominio.ModuloCliente;
+﻿using FestasInfantis.Dominio.ModuloTema;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,20 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FestasInfantis.WinApp.ModuloCliente
+namespace FestasInfantis.WinApp.ModuloTema
 {
-    public partial class TabelaAlugueisClienteControl : UserControl
+    public partial class TabelaTemaControl : UserControl
     {
-        public TabelaAlugueisClienteControl()
+        public TabelaTemaControl()
         {
             InitializeComponent();
             ConfigurarColunas();
 
-            gridAlugueis.ConfigurarGridZebrado();
+            gridTemas.ConfigurarGridZebrado();
 
-            gridAlugueis.ConfigurarGridSomenteLeitura();
+            gridTemas.ConfigurarGridSomenteLeitura();
         }
-
 
         private void ConfigurarColunas()
         {
@@ -36,8 +34,8 @@ namespace FestasInfantis.WinApp.ModuloCliente
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = "descricao",
-                    HeaderText = "Descrição do Tema"
+                    Name = "nome",
+                    HeaderText = "Nome"
                 },
                 new DataGridViewTextBoxColumn()
                 {
@@ -46,25 +44,25 @@ namespace FestasInfantis.WinApp.ModuloCliente
                 }
             };
 
-            gridAlugueis.Columns.AddRange(colunas);
+            gridTemas.Columns.AddRange(colunas);
         }
 
-        public void AtualizarRegistros(List<Aluguel> alugueis)
+        public void AtualizarRegistros(List<Tema> temas)
         {
-            gridAlugueis.Rows.Clear();
+            gridTemas.Rows.Clear();
 
-            foreach (Aluguel aluguel in alugueis)
+            foreach (Tema tema in temas)
             {
-                gridAlugueis.Rows.Add(aluguel.id, aluguel.tema.Nome, aluguel.Valor);
+                gridTemas.Rows.Add(tema.id, tema.Nome, tema.Valor);
             }
         }
 
         public int ObterIdSelecionado()
         {
-            if (gridAlugueis.SelectedRows.Count == 0)
+            if (gridTemas.SelectedRows.Count == 0)
                 return -1;
 
-            int id = Convert.ToInt32(gridAlugueis.SelectedRows[0].Cells["id"].Value);
+            int id = Convert.ToInt32(gridTemas.SelectedRows[0].Cells["id"].Value);
 
             return id;
         }

@@ -1,14 +1,24 @@
-﻿namespace FestasInfantis.Dominio.ModuloTema
+﻿using FestasInfantis.Dominio.ModuloItem;
+
+namespace FestasInfantis.Dominio.ModuloTema
 {
     public class Tema : EntidadeBase<Tema>
     {
-        public string Descricao { get; set; }
+        public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public List<object> Itens { get; set; }
+        public List<Item> Itens { get; set; }
 
-        public Tema(string descricao, decimal valor, List<object> itens)
+        public Tema(int id, string descricao, decimal valor, List<Item> itens)
         {
-            Descricao = descricao;
+            this.id = id;
+            Nome = descricao;
+            Valor = valor;
+            Itens = itens;
+        }
+
+        public Tema(string descricao, decimal valor, List<Item> itens)
+        {
+            Nome = descricao;
             Valor = valor;
             Itens = itens;
         }

@@ -31,9 +31,8 @@
             menuStrip1 = new MenuStrip();
             cadastrosMenuItem = new ToolStripMenuItem();
             clientesMenuItem = new ToolStripMenuItem();
-            compromissosMenuItem = new ToolStripMenuItem();
-            tarefasMenuItem = new ToolStripMenuItem();
-            despesasToolStripMenuItem = new ToolStripMenuItem();
+            temasMenuItem = new ToolStripMenuItem();
+            alugueisToolStripMenuItem = new ToolStripMenuItem();
             despesasMenuItem = new ToolStripMenuItem();
             categoriasMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
@@ -52,6 +51,7 @@
             btnVisualizarAlugueis = new ToolStripButton();
             labelTipoCadastro = new ToolStripLabel();
             panelRegistros = new Panel();
+            itensToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             barraFerramentas.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             // cadastrosMenuItem
             // 
-            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesMenuItem, compromissosMenuItem, tarefasMenuItem, despesasToolStripMenuItem });
+            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesMenuItem, temasMenuItem, alugueisToolStripMenuItem });
             cadastrosMenuItem.Name = "cadastrosMenuItem";
             cadastrosMenuItem.Size = new Size(71, 20);
             cadastrosMenuItem.Text = "Cadastros";
@@ -76,42 +76,36 @@
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(154, 22);
+            clientesMenuItem.Size = new Size(180, 22);
             clientesMenuItem.Text = "Clientes";
             clientesMenuItem.Click += clientesMenuItem_Click;
             // 
-            // compromissosMenuItem
+            // temasMenuItem
             // 
-            compromissosMenuItem.Name = "compromissosMenuItem";
-            compromissosMenuItem.Size = new Size(154, 22);
-            compromissosMenuItem.Text = "Compromissos";
-            compromissosMenuItem.Click += compromissosMenuItem_Click;
+            temasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { itensToolStripMenuItem });
+            temasMenuItem.Name = "temasMenuItem";
+            temasMenuItem.Size = new Size(180, 22);
+            temasMenuItem.Text = "Temas";
+            temasMenuItem.Click += temasMenuItem_Click;
             // 
-            // tarefasMenuItem
+            // alugueisToolStripMenuItem
             // 
-            tarefasMenuItem.Name = "tarefasMenuItem";
-            tarefasMenuItem.Size = new Size(154, 22);
-            tarefasMenuItem.Text = "Tarefas";
-            tarefasMenuItem.Click += tarefasMenuItem_Click;
-            // 
-            // despesasToolStripMenuItem
-            // 
-            despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
-            despesasToolStripMenuItem.Name = "despesasToolStripMenuItem";
-            despesasToolStripMenuItem.Size = new Size(154, 22);
-            despesasToolStripMenuItem.Text = "Despesas";
+            alugueisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
+            alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
+            alugueisToolStripMenuItem.Size = new Size(180, 22);
+            alugueisToolStripMenuItem.Text = "Aluguéis";
             // 
             // despesasMenuItem
             // 
             despesasMenuItem.Name = "despesasMenuItem";
-            despesasMenuItem.Size = new Size(130, 22);
+            despesasMenuItem.Size = new Size(180, 22);
             despesasMenuItem.Text = "Despesas";
             despesasMenuItem.Click += despesasMenuItem_Click;
             // 
             // categoriasMenuItem
             // 
             categoriasMenuItem.Name = "categoriasMenuItem";
-            categoriasMenuItem.Size = new Size(130, 22);
+            categoriasMenuItem.Size = new Size(180, 22);
             categoriasMenuItem.Text = "Categorias";
             categoriasMenuItem.Click += categoriasMenuItem_Click;
             // 
@@ -253,6 +247,13 @@
             panelRegistros.Size = new Size(800, 359);
             panelRegistros.TabIndex = 3;
             // 
+            // itensToolStripMenuItem
+            // 
+            itensToolStripMenuItem.Name = "itensToolStripMenuItem";
+            itensToolStripMenuItem.Size = new Size(180, 22);
+            itensToolStripMenuItem.Text = "Itens";
+            itensToolStripMenuItem.Click += itensToolStripMenuItem_Click;
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -263,6 +264,8 @@
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TelaPrincipalForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
@@ -282,9 +285,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem cadastrosMenuItem;
         private ToolStripMenuItem clientesMenuItem;
-        private ToolStripMenuItem compromissosMenuItem;
+        private ToolStripMenuItem temasMenuItem;
         private ToolStripMenuItem tarefasMenuItem;
-        private ToolStripMenuItem despesasToolStripMenuItem;
+        private ToolStripMenuItem alugueisToolStripMenuItem;
         private ToolStripMenuItem despesasMenuItem;
         private ToolStripMenuItem categoriasMenuItem;
         private ToolStripMenuItem relatóriosToolStripMenuItem;
@@ -303,5 +306,6 @@
         private ToolStripButton btnAdicionarItens;
         private ToolStripButton btnConcluirItens;
         private ToolStripButton btnVisualizarAlugueis;
+        private ToolStripMenuItem itensToolStripMenuItem;
     }
 }

@@ -1,8 +1,13 @@
 using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
+using FestasInfantis.Dominio.ModuloItem;
 using FestasInfantis.Dominio.ModuloTema;
+using FestasInfantis.Infra.Dados.Memoria.ModuleTema;
 using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
+using FestasInfantis.Infra.Dados.Memoria.ModuloItem;
 using FestasInfantis.WinApp.ModuloCliente;
+using FestasInfantis.WinApp.ModuloItem;
+using FestasInfantis.WinApp.ModuloTema;
 
 namespace FestasInfantis.WinApp
 {
@@ -12,6 +17,12 @@ namespace FestasInfantis.WinApp
 
         private IRepositorioCliente repositorioCliente =
             new RepositorioClienteEmMemoria(ConfigurarRegistrosClientes());
+
+        private IRepositorioTema repositorioTema =
+            new RepositorioTemaEmMemoria(ConfigurarRegistrosTemas());
+
+        private IRepositorioItem repositorioItem =
+            new RepositorioItemEmMemoria(ConfigurarRegistrosItens());
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -45,9 +56,16 @@ namespace FestasInfantis.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
-        private void compromissosMenuItem_Click(object sender, EventArgs e)
+        private void itensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorCompromisso(repositorioContato, repositorioCompromisso);
+            controlador = new ControladorItem(repositorioItem);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void temasMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTema(repositorioTema, repositorioItem);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -156,7 +174,7 @@ namespace FestasInfantis.WinApp
 
         private void btnVisualizarAlugueis_Click(object sender, EventArgs e)
         {
-            (controlador as ControladorCliente)!.VisualizarAlugueis ();
+            (controlador as ControladorCliente)!.VisualizarAlugueis();
         }
 
         private static List<Cliente> ConfigurarRegistrosClientes()
@@ -167,8 +185,8 @@ namespace FestasInfantis.WinApp
 
             Festa festa1 = new Festa(new Endereco("Clube Princesa", "Lages", 25), DateTime.Now, new TimeSpan(), new TimeSpan());
             Festa festa2 = new Festa(new Endereco("Clube Caça e Tiro", "Lages", 110), DateTime.Now, new TimeSpan(), new TimeSpan());
-            Tema tema1 = new Tema("Homem-Aranha", 500, new List<object>());
-            Tema tema2 = new Tema("Branca de Neve", 650, new List<object>());
+            Tema tema1 = new Tema("Homem-Aranha", 500, new List<Item>());
+            Tema tema2 = new Tema("Branca de Neve", 650, new List<Item>());
 
             Cliente cliente = new Cliente(1, "Tiago Santini", "49 98505-6251");
 
@@ -182,5 +200,29 @@ namespace FestasInfantis.WinApp
 
             return clientes;
         }
+
+        private static List<Item> ConfigurarRegistrosItens()
+        {
+            List<Item> itens = new List<Item>();
+
+            Item item1 = new Item(1, "Mesa Grande", 80);
+            Item item2 = new Item(2, "Balões de Festa", 50);
+
+            itens.Add(item1);
+            itens.Add(item2);
+
+            return itens;
+        }
+
+        private static List<Tema> ConfigurarRegistrosTemas()
+        {
+            List<Tema> temas = new List<Tema>();
+
+            Tema tema1 = new Tema(1, "Festa de Casamento", 50, ConfigurarRegistrosItens());
+            temas.Add(tema1);
+
+            return temas;
+        }
+
     }
 }
