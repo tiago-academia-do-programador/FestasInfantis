@@ -32,9 +32,9 @@
             txtId = new TextBox();
             lblNome = new Label();
             textBox1 = new TextBox();
-            dataGridView1 = new DataGridView();
+            gridAlugueis = new DataGridView();
             btnOk = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridAlugueis).BeginInit();
             SuspendLayout();
             // 
             // lblId
@@ -69,17 +69,18 @@
             // 
             textBox1.Location = new Point(70, 74);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(399, 23);
             textBox1.TabIndex = 3;
             // 
-            // dataGridView1
+            // gridAlugueis
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(21, 115);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(448, 167);
-            dataGridView1.TabIndex = 4;
+            gridAlugueis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAlugueis.Location = new Point(21, 115);
+            gridAlugueis.Name = "gridAlugueis";
+            gridAlugueis.RowTemplate.Height = 25;
+            gridAlugueis.Size = new Size(448, 167);
+            gridAlugueis.TabIndex = 4;
             // 
             // btnOk
             // 
@@ -98,14 +99,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(491, 359);
             Controls.Add(btnOk);
-            Controls.Add(dataGridView1);
+            Controls.Add(gridAlugueis);
             Controls.Add(textBox1);
             Controls.Add(lblNome);
             Controls.Add(txtId);
             Controls.Add(lblId);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TelaAlugueisClienteForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Aluguéis do Cliente";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridAlugueis).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -116,7 +120,7 @@
         private TextBox txtId;
         private Label lblNome;
         private TextBox textBox1;
-        private DataGridView dataGridView1;
+        private DataGridView gridAlugueis;
         private Button btnOk;
     }
 }
