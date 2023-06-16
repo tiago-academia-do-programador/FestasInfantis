@@ -32,9 +32,8 @@
             cadastrosMenuItem = new ToolStripMenuItem();
             clientesMenuItem = new ToolStripMenuItem();
             temasMenuItem = new ToolStripMenuItem();
+            itensToolStripMenuItem = new ToolStripMenuItem();
             alugueisToolStripMenuItem = new ToolStripMenuItem();
-            despesasMenuItem = new ToolStripMenuItem();
-            categoriasMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             labelRodape = new ToolStripStatusLabel();
@@ -51,7 +50,6 @@
             btnVisualizarAlugueis = new ToolStripButton();
             labelTipoCadastro = new ToolStripLabel();
             panelRegistros = new Panel();
-            itensToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             barraFerramentas.SuspendLayout();
@@ -88,26 +86,18 @@
             temasMenuItem.Text = "Temas";
             temasMenuItem.Click += temasMenuItem_Click;
             // 
+            // itensToolStripMenuItem
+            // 
+            itensToolStripMenuItem.Name = "itensToolStripMenuItem";
+            itensToolStripMenuItem.Size = new Size(99, 22);
+            itensToolStripMenuItem.Text = "Itens";
+            itensToolStripMenuItem.Click += itensToolStripMenuItem_Click;
+            // 
             // alugueisToolStripMenuItem
             // 
-            alugueisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
             alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
             alugueisToolStripMenuItem.Size = new Size(180, 22);
             alugueisToolStripMenuItem.Text = "Aluguéis";
-            // 
-            // despesasMenuItem
-            // 
-            despesasMenuItem.Name = "despesasMenuItem";
-            despesasMenuItem.Size = new Size(180, 22);
-            despesasMenuItem.Text = "Despesas";
-            despesasMenuItem.Click += despesasMenuItem_Click;
-            // 
-            // categoriasMenuItem
-            // 
-            categoriasMenuItem.Name = "categoriasMenuItem";
-            categoriasMenuItem.Size = new Size(180, 22);
-            categoriasMenuItem.Text = "Categorias";
-            categoriasMenuItem.Click += categoriasMenuItem_Click;
             // 
             // relatóriosToolStripMenuItem
             // 
@@ -247,13 +237,6 @@
             panelRegistros.Size = new Size(800, 359);
             panelRegistros.TabIndex = 3;
             // 
-            // itensToolStripMenuItem
-            // 
-            itensToolStripMenuItem.Name = "itensToolStripMenuItem";
-            itensToolStripMenuItem.Size = new Size(180, 22);
-            itensToolStripMenuItem.Text = "Itens";
-            itensToolStripMenuItem.Click += itensToolStripMenuItem_Click;
-            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -288,8 +271,6 @@
         private ToolStripMenuItem temasMenuItem;
         private ToolStripMenuItem tarefasMenuItem;
         private ToolStripMenuItem alugueisToolStripMenuItem;
-        private ToolStripMenuItem despesasMenuItem;
-        private ToolStripMenuItem categoriasMenuItem;
         private ToolStripMenuItem relatóriosToolStripMenuItem;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel labelRodape;
