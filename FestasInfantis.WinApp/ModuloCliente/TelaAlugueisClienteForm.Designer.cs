@@ -31,10 +31,11 @@
             lblId = new Label();
             txtId = new TextBox();
             lblNome = new Label();
-            textBox1 = new TextBox();
-            gridAlugueis = new DataGridView();
+            txtNome = new TextBox();
             btnOk = new Button();
-            ((System.ComponentModel.ISupportInitialize)gridAlugueis).BeginInit();
+            panel1 = new Panel();
+            tabelaAlugueisClienteControl1 = new TabelaAlugueisClienteControl();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblId
@@ -65,22 +66,13 @@
             lblNome.TabIndex = 2;
             lblNome.Text = "Nome:";
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.Location = new Point(70, 74);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(399, 23);
-            textBox1.TabIndex = 3;
-            // 
-            // gridAlugueis
-            // 
-            gridAlugueis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridAlugueis.Location = new Point(21, 115);
-            gridAlugueis.Name = "gridAlugueis";
-            gridAlugueis.RowTemplate.Height = 25;
-            gridAlugueis.Size = new Size(448, 167);
-            gridAlugueis.TabIndex = 4;
+            txtNome.Location = new Point(70, 74);
+            txtNome.Name = "txtNome";
+            txtNome.ReadOnly = true;
+            txtNome.Size = new Size(399, 23);
+            txtNome.TabIndex = 3;
             // 
             // btnOk
             // 
@@ -93,14 +85,30 @@
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(tabelaAlugueisClienteControl1);
+            panel1.Location = new Point(21, 122);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(448, 163);
+            panel1.TabIndex = 6;
+            // 
+            // tabelaAlugueisClienteControl1
+            // 
+            tabelaAlugueisClienteControl1.Dock = DockStyle.Fill;
+            tabelaAlugueisClienteControl1.Location = new Point(0, 0);
+            tabelaAlugueisClienteControl1.Name = "tabelaAlugueisClienteControl1";
+            tabelaAlugueisClienteControl1.Size = new Size(448, 163);
+            tabelaAlugueisClienteControl1.TabIndex = 0;
+            // 
             // TelaAlugueisClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(491, 359);
+            Controls.Add(panel1);
             Controls.Add(btnOk);
-            Controls.Add(gridAlugueis);
-            Controls.Add(textBox1);
+            Controls.Add(txtNome);
             Controls.Add(lblNome);
             Controls.Add(txtId);
             Controls.Add(lblId);
@@ -109,7 +117,7 @@
             Name = "TelaAlugueisClienteForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Aluguéis do Cliente";
-            ((System.ComponentModel.ISupportInitialize)gridAlugueis).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -119,8 +127,9 @@
         private Label lblId;
         private TextBox txtId;
         private Label lblNome;
-        private TextBox textBox1;
-        private DataGridView gridAlugueis;
+        private TextBox txtNome;
         private Button btnOk;
+        private Panel panel1;
+        private TabelaAlugueisClienteControl tabelaAlugueisClienteControl1;
     }
 }

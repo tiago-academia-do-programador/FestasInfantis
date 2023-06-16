@@ -1,4 +1,7 @@
+using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
+using FestasInfantis.Dominio.ModuloTema;
+using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
 using FestasInfantis.WinApp.ModuloCliente;
 
 namespace FestasInfantis.WinApp
@@ -7,9 +10,8 @@ namespace FestasInfantis.WinApp
     {
         private ControladorBase controlador;
 
-        //static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
-
-        private IRepositorioCliente repositorioCliente = null;
+        private IRepositorioCliente repositorioCliente =
+            new RepositorioClienteEmMemoria(ConfigurarRegistrosClientes());
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -108,6 +110,7 @@ namespace FestasInfantis.WinApp
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
             btnConcluirItens.ToolTipText = controlador.ToolTipConcluirItens;
+            btnVisualizarAlugueis.ToolTipText = controlador.ToolTipVisualizarAlugueis;
         }
 
         private void ConfigurarEstados(ControladorBase controlador)
@@ -118,6 +121,7 @@ namespace FestasInfantis.WinApp
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnAdicionarItens.Enabled = controlador.AdicionarItensHabilitado;
             btnConcluirItens.Enabled = controlador.ConcluirItensHabilitado;
+            btnVisualizarAlugueis.Enabled = controlador.VisualizarAlugueisHabilitado;
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -148,6 +152,35 @@ namespace FestasInfantis.WinApp
         private void btnConcluirItens_Click(object sender, EventArgs e)
         {
             controlador.ConcluirItens();
+        }
+
+        private void btnVisualizarAlugueis_Click(object sender, EventArgs e)
+        {
+            (controlador as ControladorCliente)!.VisualizarAlugueis ();
+        }
+
+        private static List<Cliente> ConfigurarRegistrosClientes()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            List<Aluguel> alugueis = new List<Aluguel>();
+
+            Festa festa1 = new Festa(new Endereco("Clube Princesa", "Lages", 25), DateTime.Now, new TimeSpan(), new TimeSpan());
+            Festa festa2 = new Festa(new Endereco("Clube Caça e Tiro", "Lages", 110), DateTime.Now, new TimeSpan(), new TimeSpan());
+            Tema tema1 = new Tema("Homem-Aranha", 500, new List<object>());
+            Tema tema2 = new Tema("Branca de Neve", 650, new List<object>());
+
+            Cliente cliente = new Cliente(1, "Tiago Santini", "49 98505-6251");
+
+            alugueis.Add(new Aluguel(1, cliente, festa1, tema1, 50, 500, 200));
+            alugueis.Add(new Aluguel(2, cliente, festa2, tema2, 40, 900, 100));
+
+            cliente.AdicionarAluguel(alugueis[0]);
+            cliente.AdicionarAluguel(alugueis[1]);
+
+            clientes.Add(cliente);
+
+            return clientes;
         }
     }
 }

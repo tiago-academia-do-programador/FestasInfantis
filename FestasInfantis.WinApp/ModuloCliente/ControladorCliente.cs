@@ -22,6 +22,29 @@ namespace FestasInfantis.WinApp.ModuloCliente
         public override string ToolTipEditar { get { return "Editar Cliente existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir Cliente existente"; } }
+        public override string ToolTipVisualizarAlugueis { get { return "Visualizar Aluguéis do Cliente"; } }
+
+        public override bool VisualizarAlugueisHabilitado { get { return true; } }
+
+        public void VisualizarAlugueis()
+        {
+            Cliente Cliente = ObterClienteSelecionado();
+
+            if (Cliente == null)
+            {
+                MessageBox.Show($"Selecione um Cliente primeiro!",
+                    "Edição de Clientes",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            TelaAlugueisClienteForm telaCliente = new TelaAlugueisClienteForm();
+            telaCliente.ConfigurarTela(Cliente);
+
+            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
+        }
 
         public override void Inserir()
         {
@@ -59,9 +82,10 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Cliente ClienteAtualizado = telaCliente.ObterCliente();
-                repositorioCliente.Editar(ClienteAtualizado.id, ClienteAtualizado);
+                Cliente clienteAtualizado = telaCliente.ObterCliente();
+                repositorioCliente.Editar(clienteAtualizado.id, clienteAtualizado);
             }
+
             CarregarClientes();
         }
 
@@ -98,9 +122,9 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
         private void CarregarClientes()
         {
-            //List<Cliente> Clientes = repositorioCliente.SelecionarTodos();
+            List<Cliente> Clientes = repositorioCliente.SelecionarTodos();
 
-            //tabelaCliente.AtualizarRegistros(Clientes);
+            tabelaCliente.AtualizarRegistros(Clientes);
         }
 
         public override UserControl ObterListagem()

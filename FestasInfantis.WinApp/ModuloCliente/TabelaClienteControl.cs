@@ -50,7 +50,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             foreach (Cliente cliente in clientes)
             {
-                gridClientes.Rows.Add(cliente.id, cliente.nome, cliente.telefone);
+                gridClientes.Rows.Add(cliente.id, cliente.nome, cliente.telefone, cliente.QuantidadeAlugueis);
             }
         }
 

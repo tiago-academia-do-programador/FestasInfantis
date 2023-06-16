@@ -19,6 +19,7 @@ namespace FestasInfantis.WinApp.Compartilhado
         public virtual string ToolTipAdicionarItens { get; }
 
         public virtual string ToolTipConcluirItens { get; }
+        public virtual string ToolTipVisualizarAlugueis{ get; }
             
 
         public virtual bool InserirHabilitado { get { return true; } }
@@ -28,6 +29,7 @@ namespace FestasInfantis.WinApp.Compartilhado
         public virtual bool FiltrarHabilitado { get { return false; } }
         public virtual bool AdicionarItensHabilitado { get { return false; } }
         public virtual bool ConcluirItensHabilitado { get { return false; } }
+        public virtual bool VisualizarAlugueisHabilitado { get { return false; } }
 
         public abstract void Inserir();
 

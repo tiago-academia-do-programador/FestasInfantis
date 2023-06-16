@@ -1,6 +1,6 @@
 ﻿namespace FestasInfantis.WinApp.ModuloCliente
 {
-    partial class TabelaClienteControl
+    partial class TabelaAlugueisClienteControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gridClientes = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)gridClientes).BeginInit();
+            gridAlugueis = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridAlugueis).BeginInit();
             SuspendLayout();
             // 
-            // gridClientes
+            // gridAlugueis
             // 
-            gridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridClientes.Dock = DockStyle.Fill;
-            gridClientes.Location = new Point(0, 0);
-            gridClientes.Name = "gridClientes";
-            gridClientes.RowHeadersVisible = false;
-            gridClientes.RowTemplate.Height = 25;
-            gridClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridClientes.Size = new Size(150, 150);
-            gridClientes.TabIndex = 0;
+            gridAlugueis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAlugueis.Dock = DockStyle.Fill;
+            gridAlugueis.Location = new Point(0, 0);
+            gridAlugueis.Name = "gridAlugueis";
+            gridAlugueis.RowHeadersVisible = false;
+            gridAlugueis.RowTemplate.Height = 25;
+            gridAlugueis.Size = new Size(150, 150);
+            gridAlugueis.TabIndex = 0;
             // 
-            // TabelaClienteControl
+            // TabelaAlugueisClienteControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(gridClientes);
-            Name = "TabelaClienteControl";
-            ((System.ComponentModel.ISupportInitialize)gridClientes).EndInit();
+            Controls.Add(gridAlugueis);
+            Name = "TabelaAlugueisClienteControl";
+            ((System.ComponentModel.ISupportInitialize)gridAlugueis).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView gridClientes;
+        private DataGridView gridAlugueis;
     }
 }

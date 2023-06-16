@@ -1,26 +1,36 @@
-﻿namespace FestasInfantis.Dominio.ModuloCliente
+﻿using FestasInfantis.Dominio.ModuloAluguel;
+
+namespace FestasInfantis.Dominio.ModuloCliente
 {
     public class Cliente : EntidadeBase<Cliente>
     {
         public string nome { get; set; }
+        
         public string telefone;
+
+        public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
+        public int QuantidadeAlugueis { get => Alugueis.Count; }
 
         public Cliente()
         {
-
         }
 
-        public Cliente(string nome, string telefone)
+        public Cliente(string nome, string telefone): this()
         {
             this.nome = nome;
             this.telefone = telefone;
         }
 
-        public Cliente(int id, string nome, string telefone)
+        public Cliente(int id, string nome, string telefone): this()
         {
             this.id = id;
             this.nome = nome;
             this.telefone = telefone;
+        }
+
+        public void AdicionarAluguel(Aluguel aluguel)
+        {
+            Alugueis.Add(aluguel);
         }
 
         public override void AtualizarInformacoes(Cliente registroAtualizado)
