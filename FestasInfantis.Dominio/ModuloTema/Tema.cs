@@ -12,14 +12,10 @@ namespace FestasInfantis.Dominio.ModuloTema
             { 
                 return Itens.Aggregate(0m, (soma, item) => soma + item.valor);
             }
-            set
-            {
-                
-            }
         }
         public List<Item> Itens { get; set; }
 
-        public Tema(int id, string descricao,List<Item> itens)
+        public Tema(int id, string descricao, List<Item> itens)
         {
             this.id = id;
             Nome = descricao;

@@ -28,36 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            listItensTema = new CheckedListBox();
+            btnGravar = new Button();
             SuspendLayout();
             // 
-            // dataGridView1
+            // listItensTema
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(425, 360);
-            dataGridView1.TabIndex = 0;
+            listItensTema.FormattingEnabled = true;
+            listItensTema.Location = new Point(0, 0);
+            listItensTema.Name = "listItensTema";
+            listItensTema.Size = new Size(425, 346);
+            listItensTema.TabIndex = 0;
+            // 
+            // btnGravar
+            // 
+            btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGravar.DialogResult = DialogResult.OK;
+            btnGravar.Location = new Point(338, 357);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(75, 41);
+            btnGravar.TabIndex = 1;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
             // 
             // TelaSelecaoItensForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(425, 360);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(425, 410);
+            Controls.Add(btnGravar);
+            Controls.Add(listItensTema);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaSelecaoItensForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Selecionar Itens do Tema";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private CheckedListBox listItensTema;
+        private Button btnGravar;
     }
 }

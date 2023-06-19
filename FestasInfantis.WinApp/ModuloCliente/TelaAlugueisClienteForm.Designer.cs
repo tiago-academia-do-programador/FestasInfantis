@@ -112,6 +112,7 @@
             Controls.Add(lblNome);
             Controls.Add(txtId);
             Controls.Add(lblId);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaAlugueisClienteForm";

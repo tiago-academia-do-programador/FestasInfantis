@@ -5,14 +5,18 @@ namespace FestasInfantis.WinApp.ModuloTema
 {
     public partial class TelaTemaForm : Form
     {
-        public TelaTemaForm()
+        private List<Item> itensDisponiveis;
+
+        public TelaTemaForm(List<Item> itensDisponiveis)
         {
             InitializeComponent();
+
+            this.itensDisponiveis = itensDisponiveis;
+
             ConfigurarColunas();
-
             gridItens.ConfigurarGridZebrado();
-
             gridItens.ConfigurarGridSomenteLeitura();
+
         }
 
         public Tema ObterTema()
@@ -25,8 +29,11 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             foreach (DataGridViewRow linha in gridItens.Rows)
             {
-                Item itemSelecionado = (Item)linha.DataBoundItem;
-                itens.Add(itemSelecionado);
+                int idItem = Convert.ToInt32(linha.Cells[0].Value);
+                string descricao = Convert.ToString(linha.Cells[1].Value);
+                decimal valor = Convert.ToDecimal(linha.Cells[2].Value);
+
+                itens.Add(new Item(idItem, descricao, valor));
             }
 
             Tema tema = new Tema(nome, itens);
@@ -73,9 +80,12 @@ namespace FestasInfantis.WinApp.ModuloTema
 
         private void btnSelecionarItens_Click(object sender, EventArgs e)
         {
-            TelaSelecaoItensForm telaItens = new TelaSelecaoItensForm();
+            TelaSelecaoItensForm telaItens = new TelaSelecaoItensForm(itensDisponiveis, ObterTema());
 
-            telaItens.ShowDialog();
+            DialogResult resultado = telaItens.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+                ConfigurarGridItens(telaItens.ObterItensMarcados());
         }
 
         public void ConfigurarTela(Tema tema)
@@ -86,12 +96,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             txtValor.Text = tema.Valor.ToString();
 
-            gridItens.Rows.Clear();
-
-            foreach (Item item in tema.Itens)
-            {
-                gridItens.Rows.Add(item.id, item.descricao, item.valor);
-            }
+            ConfigurarGridItens(tema.Itens);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -105,6 +110,16 @@ namespace FestasInfantis.WinApp.ModuloTema
                 TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        private void ConfigurarGridItens(List<Item> itensSelecionados)
+        {
+            gridItens.Rows.Clear();
+
+            foreach (Item item in itensSelecionados)
+            {
+                gridItens.Rows.Add(item.id, item.descricao, item.valor);
             }
         }
     }

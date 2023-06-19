@@ -23,7 +23,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
         public override void Inserir()
         {
-            TelaTemaForm telaTema = new TelaTemaForm();
+            TelaTemaForm telaTema = new TelaTemaForm(repositorioItem.SelecionarTodos());
 
             DialogResult opcaoEscolhida = telaTema.ShowDialog();
 
@@ -50,7 +50,7 @@ namespace FestasInfantis.WinApp.ModuloTema
                 return;
             }
 
-            TelaTemaForm telaTema = new TelaTemaForm();
+            TelaTemaForm telaTema = new TelaTemaForm(repositorioItem.SelecionarTodos());
             telaTema.ConfigurarTela(tema);
 
             DialogResult opcaoEscolhida = telaTema.ShowDialog();

@@ -40,5 +40,18 @@
 
             return erros.ToArray();
         }
+
+        public override string ToString()
+        {
+            return $"Id: {id} Descrição: {descricao} Valor: {valor}";
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Item item &&
+                   id == item.id &&
+                   descricao == item.descricao &&
+                   valor == item.valor;
+        }
     }
 }

@@ -37,10 +37,10 @@
             lblValor = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            txtValor = new TextBox();
             tabPage2 = new TabPage();
             btnSelecionarItens = new Button();
             gridItens = new DataGridView();
-            txtValor = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -139,6 +139,16 @@
             tabPage1.Text = "Dados Básicos";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtValor
+            // 
+            txtValor.Enabled = false;
+            txtValor.Location = new Point(89, 91);
+            txtValor.Name = "txtValor";
+            txtValor.ReadOnly = true;
+            txtValor.Size = new Size(67, 23);
+            txtValor.TabIndex = 11;
+            txtValor.Text = "0";
+            // 
             // tabPage2
             // 
             tabPage2.Controls.Add(btnSelecionarItens);
@@ -170,16 +180,6 @@
             gridItens.Size = new Size(418, 240);
             gridItens.TabIndex = 0;
             // 
-            // txtValor
-            // 
-            txtValor.Enabled = false;
-            txtValor.Location = new Point(89, 91);
-            txtValor.Name = "txtValor";
-            txtValor.ReadOnly = true;
-            txtValor.Size = new Size(67, 23);
-            txtValor.TabIndex = 11;
-            txtValor.Text = "0";
-            // 
             // TelaTemaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -188,6 +188,7 @@
             Controls.Add(tabControl1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaTemaForm";

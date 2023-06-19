@@ -218,7 +218,12 @@ namespace FestasInfantis.WinApp
         {
             List<Tema> temas = new List<Tema>();
 
-            Tema tema1 = new Tema(1, "Festa de Casamento", ConfigurarRegistrosItens());
+            List<Item> itens = new List<Item>();
+
+            Item item1 = new Item(1, "Mesa Grande", 80);
+            itens.Add(item1);
+
+            Tema tema1 = new Tema(1, "Festa de Casamento", itens);
             temas.Add(tema1);
 
             return temas;
