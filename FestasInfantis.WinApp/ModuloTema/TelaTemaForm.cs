@@ -92,7 +92,7 @@ namespace FestasInfantis.WinApp.ModuloTema
         {
             txtId.Text = tema.id.ToString();
 
-            txtNome.Text = tema.Nome;
+            txtNome.Text = tema.nome;
 
             txtValor.Text = tema.Valor.ToString();
 

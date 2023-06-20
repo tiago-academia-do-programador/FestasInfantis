@@ -6,16 +6,20 @@ namespace FestasInfantis.Dominio.ModuloAluguel
 
     public class Endereco
     {
-        public string Rua { get; set; }
-        public string Cidade { get; set; }
-        public int Numero { get; set; }
-
-        public Endereco(string rua, string cidade, int numero)
+        public Endereco(string rua, string bairro, string cidade, string estado, string numero)
         {
             Rua = rua;
+            Bairro = bairro;
             Cidade = cidade;
+            Estado = estado;
             Numero = numero;
         }
+
+        public string Rua { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+        public string Numero { get; set; }
     }
 
     public class Festa
@@ -36,37 +40,43 @@ namespace FestasInfantis.Dominio.ModuloAluguel
 
     public class Aluguel : EntidadeBase<Aluguel>
     {
-        public Cliente cliente;
-        public Festa festa;
-        public Tema tema;
+        public Cliente Cliente { get; private set; }
+        public Festa Festa { get; private set; }
+        public Tema Tema { get; private set; }
+        public decimal PorcentagemSinal { get; private set; }
+        public decimal PorcentagemDesconto { get; private set; }
 
-        public decimal Sinal { get; set; }
-        public decimal Valor { get; private set; }
-        public decimal ValorDesconto { get; private set; }
-
-        public Aluguel(Cliente cliente, Festa festa, decimal sinal, decimal valor, decimal valorDesconto)
+        public Aluguel(Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
         {
-            this.cliente = cliente;
-            this.festa = festa;
-            Sinal = sinal;
-            Valor = valor;
-            ValorDesconto = valorDesconto;
+            Cliente = cliente;
+            Festa = festa;
+            Tema = tema;
+            PorcentagemSinal = porcentagemSinal;
+            PorcentagemDesconto = porcentagemDesconto;
         }
 
-        public Aluguel(int id, Cliente cliente, Festa festa, Tema tema, decimal sinal, decimal valor, decimal valorDesconto)
+        public decimal CalcularValorPendente()
         {
-            this.id = id;
-            this.cliente = cliente;
-            this.festa = festa;
-            this.tema = tema;
-            Sinal = sinal;
-            Valor = valor;
-            ValorDesconto = valorDesconto;
+            return Tema.Valor - CalcularValorSinal() - CalcularValorDesconto();
+        }
+
+        public decimal CalcularValorSinal()
+        {
+            return Tema.Valor * PorcentagemSinal / 100;
+        }
+
+        public decimal CalcularValorDesconto()
+        {
+            return Tema.Valor * PorcentagemDesconto / 100;
         }
 
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
-            
+            Cliente = registroAtualizado.Cliente;
+            Festa = registroAtualizado.Festa;
+            Tema = registroAtualizado.Tema;
+            PorcentagemDesconto = registroAtualizado.PorcentagemDesconto;
+            PorcentagemSinal = registroAtualizado.PorcentagemSinal;
         }
 
         public override string[] Validar()

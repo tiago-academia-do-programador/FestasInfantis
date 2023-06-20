@@ -85,7 +85,7 @@ namespace FestasInfantis.WinApp.ModuloTema
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o Tema {Tema.Nome}?", "Exclusão de Temas",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o Tema {Tema.nome}?", "Exclusão de Temas",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)

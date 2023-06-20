@@ -3,8 +3,10 @@ using FestasInfantis.Dominio.ModuloCliente;
 using FestasInfantis.Dominio.ModuloItem;
 using FestasInfantis.Dominio.ModuloTema;
 using FestasInfantis.Infra.Dados.Memoria.ModuleTema;
+using FestasInfantis.Infra.Dados.Memoria.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
 using FestasInfantis.Infra.Dados.Memoria.ModuloItem;
+using FestasInfantis.WinApp.ModuloAluguel;
 using FestasInfantis.WinApp.ModuloCliente;
 using FestasInfantis.WinApp.ModuloItem;
 using FestasInfantis.WinApp.ModuloTema;
@@ -16,13 +18,16 @@ namespace FestasInfantis.WinApp
         private ControladorBase controlador;
 
         private IRepositorioCliente repositorioCliente =
-            new RepositorioClienteEmMemoria(ConfigurarRegistrosClientes());
+            new RepositorioClienteEmMemoria(new List<Cliente>());
 
         private IRepositorioTema repositorioTema =
-            new RepositorioTemaEmMemoria(ConfigurarRegistrosTemas());
+            new RepositorioTemaEmMemoria(new List<Tema>());
 
         private IRepositorioItem repositorioItem =
-            new RepositorioItemEmMemoria(ConfigurarRegistrosItens());
+            new RepositorioItemEmMemoria(new List<Item>());
+
+        private IRepositorioAluguel repositorioAluguel =
+            new RepositorioAluguelEmMemoria(new List<Aluguel>());
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -70,23 +75,9 @@ namespace FestasInfantis.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
-        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        private void alugueisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorTarefa(repositorioTarefa);
-
-            ConfigurarTelaPrincipal(controlador);
-        }
-
-        private void categoriasMenuItem_Click(object sender, EventArgs e)
-        {
-            //controlador = new ControladorCategoria(repositorioCategoria);
-
-            ConfigurarTelaPrincipal(controlador);
-        }
-
-        private void despesasMenuItem_Click(object sender, EventArgs e)
-        {
-            //controlador = new ControladorDespesa(repositorioDespesa);
+            controlador = new ControladorAluguel(repositorioAluguel, repositorioCliente, repositorioTema);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -176,58 +167,5 @@ namespace FestasInfantis.WinApp
         {
             (controlador as ControladorCliente)!.VisualizarAlugueis();
         }
-
-        private static List<Cliente> ConfigurarRegistrosClientes()
-        {
-            List<Cliente> clientes = new List<Cliente>();
-
-            List<Aluguel> alugueis = new List<Aluguel>();
-
-            Festa festa1 = new Festa(new Endereco("Clube Princesa", "Lages", 25), DateTime.Now, new TimeSpan(), new TimeSpan());
-            Festa festa2 = new Festa(new Endereco("Clube Caça e Tiro", "Lages", 110), DateTime.Now, new TimeSpan(), new TimeSpan());
-            Tema tema1 = new Tema("Homem-Aranha", new List<Item>());
-            Tema tema2 = new Tema("Branca de Neve", new List<Item>());
-
-            Cliente cliente = new Cliente(1, "Tiago Santini", "49 98505-6251");
-
-            alugueis.Add(new Aluguel(1, cliente, festa1, tema1, 50, 500, 200));
-            alugueis.Add(new Aluguel(2, cliente, festa2, tema2, 40, 900, 100));
-
-            cliente.AdicionarAluguel(alugueis[0]);
-            cliente.AdicionarAluguel(alugueis[1]);
-
-            clientes.Add(cliente);
-
-            return clientes;
-        }
-
-        private static List<Item> ConfigurarRegistrosItens()
-        {
-            List<Item> itens = new List<Item>();
-
-            Item item1 = new Item(1, "Mesa Grande", 80);
-            Item item2 = new Item(2, "Balões de Festa", 50);
-
-            itens.Add(item1);
-            itens.Add(item2);
-
-            return itens;
-        }
-
-        private static List<Tema> ConfigurarRegistrosTemas()
-        {
-            List<Tema> temas = new List<Tema>();
-
-            List<Item> itens = new List<Item>();
-
-            Item item1 = new Item(1, "Mesa Grande", 80);
-            itens.Add(item1);
-
-            Tema tema1 = new Tema(1, "Festa de Casamento", itens);
-            temas.Add(tema1);
-
-            return temas;
-        }
-
     }
 }

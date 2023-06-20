@@ -1,20 +1,10 @@
 ﻿using FestasInfantis.Dominio.ModuloAluguel;
-using FestasInfantis.Dominio.ModuloCliente;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace FestasInfantis.WinApp.ModuloCliente
+namespace FestasInfantis.WinApp.ModuloAluguel
 {
-    public partial class TabelaAlugueisClienteControl : UserControl
+    public partial class TabelaAluguelControl : UserControl
     {
-        public TabelaAlugueisClienteControl()
+        public TabelaAluguelControl()
         {
             InitializeComponent();
             ConfigurarColunas();
@@ -23,7 +13,6 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             gridAlugueis.ConfigurarGridSomenteLeitura();
         }
-
 
         private void ConfigurarColunas()
         {
@@ -36,13 +25,33 @@ namespace FestasInfantis.WinApp.ModuloCliente
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = "descricao",
-                    HeaderText = "Descrição do Tema"
+                    Name = "nome",
+                    HeaderText = "Nome do Cliente"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "telefone",
+                    HeaderText = "Telefone do Cliente"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "tema",
+                    HeaderText = "Tema"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "data",
+                    HeaderText = "Data"
                 },
                 new DataGridViewTextBoxColumn()
                 {
                     Name = "valor",
                     HeaderText = "Valor"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "valorPendente",
+                    HeaderText = "Valor Pendente"
                 }
             };
 
@@ -55,7 +64,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             foreach (Aluguel aluguel in alugueis)
             {
-                gridAlugueis.Rows.Add(aluguel.id, aluguel.Tema, aluguel.Tema.Valor);
+                gridAlugueis.Rows.Add(aluguel.id, aluguel.Cliente, aluguel.Tema, aluguel.Festa.Data, aluguel.Tema.Valor, aluguel.CalcularValorPendente());
             }
         }
 

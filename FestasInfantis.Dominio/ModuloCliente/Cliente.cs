@@ -41,7 +41,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
 
         public override string ToString()
         {
-            return "Id: " + id + ", " + nome + ", Telefone: " + telefone;
+            return $"{nome} {telefone}";
         }
 
         public override string[] Validar()

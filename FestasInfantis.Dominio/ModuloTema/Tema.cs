@@ -4,9 +4,9 @@ namespace FestasInfantis.Dominio.ModuloTema
 {
     public class Tema : EntidadeBase<Tema>
     {
-        public string Nome { get; set; }
+        public string nome;
 
-        public decimal Valor 
+        public decimal Valor
         { 
             get 
             { 
@@ -18,31 +18,36 @@ namespace FestasInfantis.Dominio.ModuloTema
         public Tema(int id, string descricao, List<Item> itens)
         {
             this.id = id;
-            Nome = descricao;
+            nome = descricao;
             Itens = itens;
         }
 
         public Tema(string descricao, List<Item> itens)
         {
-            Nome = descricao;
+            nome = descricao;
             Itens = itens;
         }
 
         public override void AtualizarInformacoes(Tema registroAtualizado)
         {
             this.id = registroAtualizado.id;
-            this.Nome = registroAtualizado.Nome;
+            this.nome = registroAtualizado.nome;
             this.Itens = registroAtualizado.Itens;
+        }
+
+        public override string ToString()
+        {
+            return $"{nome}";
         }
 
         public override string[] Validar()
         {
             List<string> erros = new List<string>();
 
-            if (string.IsNullOrEmpty(Nome))
+            if (string.IsNullOrEmpty(nome))
                 erros.Add("O campo 'Nome' é obrigatório");
 
-            if (Nome.Length < 3)
+            if (nome.Length < 3)
                 erros.Add("O campo 'Nome' deve conter no mínimo 3 caracteres");
 
             if (Valor < 1)

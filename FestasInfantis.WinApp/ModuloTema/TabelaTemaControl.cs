@@ -53,7 +53,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             foreach (Tema tema in temas)
             {
-                gridTemas.Rows.Add(tema.id, tema.Nome, tema.Valor);
+                gridTemas.Rows.Add(tema.id, tema.nome, tema.Valor);
             }
         }
 
