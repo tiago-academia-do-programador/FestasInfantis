@@ -64,5 +64,15 @@ namespace FestasInfantis.Dominio.ModuloCliente
                    nome == cliente.nome &&
                    telefone == cliente.telefone;
         }
+
+        public decimal CalcularDesconto(ConfiguracaoDesconto configuracaoDesconto)
+        {
+            decimal desconto = QuantidadeAlugueis * configuracaoDesconto.PorcentagemDesconto;
+
+            if (desconto > configuracaoDesconto.PorcentagemMaxima)
+                desconto = configuracaoDesconto.PorcentagemMaxima;
+
+            return desconto;
+        }
     }
 }

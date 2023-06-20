@@ -81,7 +81,18 @@ namespace FestasInfantis.Dominio.ModuloAluguel
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+
+            if (Cliente != null)
+                erros.Add("O campo 'Cliente' é obrigatório");
+
+            if (Tema != null)
+                erros.Add("O campo 'Tema' é obrigatório");
+                
+            if (PorcentagemSinal <= 0)
+                erros.Add("O campo '% do Sinal' é obrigatório");
+
+            return erros.ToArray();
         }
     }
 }

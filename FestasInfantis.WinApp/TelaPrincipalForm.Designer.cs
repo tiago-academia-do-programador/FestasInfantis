@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             menuStrip1 = new MenuStrip();
             cadastrosMenuItem = new ToolStripMenuItem();
             clientesMenuItem = new ToolStripMenuItem();
@@ -48,6 +49,7 @@
             btnConcluirItens = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnVisualizarAlugueis = new ToolStripButton();
+            btnConfigurarDescontos = new ToolStripButton();
             labelTipoCadastro = new ToolStripLabel();
             panelRegistros = new Panel();
             menuStrip1.SuspendLayout();
@@ -74,7 +76,7 @@
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(180, 22);
+            clientesMenuItem.Size = new Size(120, 22);
             clientesMenuItem.Text = "Clientes";
             clientesMenuItem.Click += clientesMenuItem_Click;
             // 
@@ -82,7 +84,7 @@
             // 
             temasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { itensToolStripMenuItem });
             temasMenuItem.Name = "temasMenuItem";
-            temasMenuItem.Size = new Size(180, 22);
+            temasMenuItem.Size = new Size(120, 22);
             temasMenuItem.Text = "Temas";
             temasMenuItem.Click += temasMenuItem_Click;
             // 
@@ -96,7 +98,7 @@
             // alugueisToolStripMenuItem
             // 
             alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
-            alugueisToolStripMenuItem.Size = new Size(180, 22);
+            alugueisToolStripMenuItem.Size = new Size(120, 22);
             alugueisToolStripMenuItem.Text = "Aluguéis";
             alugueisToolStripMenuItem.Click += alugueisToolStripMenuItem_Click;
             // 
@@ -124,7 +126,7 @@
             // barraFerramentas
             // 
             barraFerramentas.Enabled = false;
-            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, btnConcluirItens, toolStripSeparator1, btnVisualizarAlugueis, labelTipoCadastro });
+            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, btnConcluirItens, toolStripSeparator1, btnVisualizarAlugueis, btnConfigurarDescontos, labelTipoCadastro });
             barraFerramentas.Location = new Point(0, 24);
             barraFerramentas.Name = "barraFerramentas";
             barraFerramentas.Size = new Size(800, 45);
@@ -223,6 +225,16 @@
             btnVisualizarAlugueis.Size = new Size(42, 42);
             btnVisualizarAlugueis.Click += btnVisualizarAlugueis_Click;
             // 
+            // btnConfigurarDescontos
+            // 
+            btnConfigurarDescontos.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConfigurarDescontos.Image = (Image)resources.GetObject("btnConfigurarDescontos.Image");
+            btnConfigurarDescontos.ImageTransparentColor = Color.Magenta;
+            btnConfigurarDescontos.Name = "btnConfigurarDescontos";
+            btnConfigurarDescontos.Size = new Size(23, 42);
+            btnConfigurarDescontos.Text = "btnConfigurarDescontos";
+            btnConfigurarDescontos.Click += btnConfigurarDescontos_Click;
+            // 
             // labelTipoCadastro
             // 
             labelTipoCadastro.Name = "labelTipoCadastro";
@@ -290,5 +302,6 @@
         private ToolStripButton btnConcluirItens;
         private ToolStripButton btnVisualizarAlugueis;
         private ToolStripMenuItem itensToolStripMenuItem;
+        private ToolStripButton btnConfigurarDescontos;
     }
 }

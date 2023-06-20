@@ -37,6 +37,8 @@
             txtHorarioInicio = new DateTimePicker();
             lblHorarioInicio = new Label();
             pnlEndereco = new GroupBox();
+            txtNumero = new TextBox();
+            lblNumero = new Label();
             txtEstado = new TextBox();
             lblEstado = new Label();
             txtRua = new TextBox();
@@ -69,8 +71,6 @@
             label4 = new Label();
             btnCancelar = new Button();
             btnGravar = new Button();
-            txtNumero = new TextBox();
-            lblNumero = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             pnlEndereco.SuspendLayout();
@@ -178,6 +178,24 @@
             pnlEndereco.TabIndex = 5;
             pnlEndereco.TabStop = false;
             pnlEndereco.Text = "Dados do Endereço:";
+            // 
+            // txtNumero
+            // 
+            txtNumero.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNumero.Location = new Point(351, 97);
+            txtNumero.Name = "txtNumero";
+            txtNumero.Size = new Size(100, 23);
+            txtNumero.TabIndex = 19;
+            // 
+            // lblNumero
+            // 
+            lblNumero.AutoSize = true;
+            lblNumero.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNumero.Location = new Point(291, 100);
+            lblNumero.Name = "lblNumero";
+            lblNumero.Size = new Size(54, 15);
+            lblNumero.TabIndex = 18;
+            lblNumero.Text = "Número:";
             // 
             // txtEstado
             // 
@@ -304,6 +322,7 @@
             cmbClientes.Name = "cmbClientes";
             cmbClientes.Size = new Size(218, 23);
             cmbClientes.TabIndex = 18;
+            cmbClientes.SelectedIndexChanged += AtualizarPorcentualDesconto;
             // 
             // txtPorcentagemDesconto
             // 
@@ -507,24 +526,6 @@
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
-            // 
-            // txtNumero
-            // 
-            txtNumero.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNumero.Location = new Point(351, 97);
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(100, 23);
-            txtNumero.TabIndex = 19;
-            // 
-            // lblNumero
-            // 
-            lblNumero.AutoSize = true;
-            lblNumero.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNumero.Location = new Point(291, 100);
-            lblNumero.Name = "lblNumero";
-            lblNumero.Size = new Size(54, 15);
-            lblNumero.TabIndex = 18;
-            lblNumero.Text = "Número:";
             // 
             // TelaAluguelForm
             // 

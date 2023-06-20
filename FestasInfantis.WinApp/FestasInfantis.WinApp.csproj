@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FestasInfantis.Dominio\FestasInfantis.Dominio.csproj" />
+    <ProjectReference Include="..\FestasInfantis.Infra.Dados.Arquivo\FestasInfantis.Infra.Dados.Arquivo.csproj" />
     <ProjectReference Include="..\FestasInfantis.Infra.Dados.Memoria\FestasInfantis.Infra.Dados.Memoria.csproj" />
   </ItemGroup>
 

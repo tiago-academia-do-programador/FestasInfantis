@@ -11,16 +11,19 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         private IRepositorioAluguel repositorioAluguel;
         private IRepositorioCliente repositorioCliente;
         private IRepositorioTema repositorioTema;
+        private IRepositorioConfiguracaoDesconto repositorioDesconto;
 
         public ControladorAluguel(
             IRepositorioAluguel repositorioAluguel, 
             IRepositorioCliente repositorioCliente,
-            IRepositorioTema repositorioTema
+            IRepositorioTema repositorioTema,
+            IRepositorioConfiguracaoDesconto repositorioDesconto
             )
         {
             this.repositorioAluguel = repositorioAluguel;
             this.repositorioCliente = repositorioCliente;
             this.repositorioTema = repositorioTema;
+            this.repositorioDesconto = repositorioDesconto;
         }
 
         public override string ToolTipInserir { get { return "Inserir novo Aluguel"; } }
@@ -28,11 +31,19 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         public override string ToolTipEditar { get { return "Editar Aluguel existente"; } }
             
         public override string ToolTipExcluir { get { return "Excluir Aluguel existente"; } }
+        
+        public override string ToolTipConfigurarDescontos { get { return "Configurar Descontos de Aluguel"; } }
+
+        public override bool ConfigurarDescontosHabilitado { get { return true; } }
 
         public override void Inserir()
         {
             TelaAluguelForm telaAluguel = 
-                new TelaAluguelForm(repositorioAluguel, repositorioCliente, repositorioTema);
+                new TelaAluguelForm(
+                    repositorioDesconto.ObterConfiguracao(),
+                    repositorioAluguel.SelecionarTodos(),
+                    repositorioCliente.SelecionarTodos(),
+                    repositorioTema.SelecionarTodos());
 
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
 
@@ -74,6 +85,22 @@ namespace FestasInfantis.WinApp.ModuloAluguel
                 CarregarAlugueis();
             }
 
+        }
+
+        public void ConfigurarDescontos()
+        {
+            ConfiguracaoDesconto configuracao = repositorioDesconto.ObterConfiguracao();
+
+            TelaConfiguracaoDesconto telaConfiguracao = new TelaConfiguracaoDesconto(configuracao);
+
+            DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                ConfiguracaoDesconto novaConfiguracao = telaConfiguracao.ObterConfiguracaoDesconto();
+
+                repositorioDesconto.GravarMudancas(novaConfiguracao);
+            }
         }
 
         public override UserControl ObterListagem()

@@ -2,6 +2,8 @@ using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
 using FestasInfantis.Dominio.ModuloItem;
 using FestasInfantis.Dominio.ModuloTema;
+using FestasInfantis.Infra.Dados.Arquivo;
+using FestasInfantis.Infra.Dados.Arquivo.Compartilhado;
 using FestasInfantis.Infra.Dados.Memoria.ModuleTema;
 using FestasInfantis.Infra.Dados.Memoria.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
@@ -17,6 +19,11 @@ namespace FestasInfantis.WinApp
     {
         private ControladorBase controlador;
 
+        private static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
+
+        private IRepositorioConfiguracaoDesconto repositorioDesconto =
+            new RepositorioConfiguracaoDesconto(contextoDados);
+
         private IRepositorioCliente repositorioCliente =
             new RepositorioClienteEmMemoria(new List<Cliente>());
 
@@ -25,6 +32,7 @@ namespace FestasInfantis.WinApp
 
         private IRepositorioItem repositorioItem =
             new RepositorioItemEmMemoria(new List<Item>());
+
 
         private IRepositorioAluguel repositorioAluguel =
             new RepositorioAluguelEmMemoria(new List<Aluguel>());
@@ -77,7 +85,11 @@ namespace FestasInfantis.WinApp
 
         private void alugueisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorAluguel(repositorioAluguel, repositorioCliente, repositorioTema);
+            controlador = new ControladorAluguel(
+                repositorioAluguel,
+                repositorioCliente,
+                repositorioTema,
+                repositorioDesconto);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -120,6 +132,7 @@ namespace FestasInfantis.WinApp
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
             btnConcluirItens.ToolTipText = controlador.ToolTipConcluirItens;
             btnVisualizarAlugueis.ToolTipText = controlador.ToolTipVisualizarAlugueis;
+            btnConfigurarDescontos.ToolTipText = controlador.ToolTipConfigurarDescontos;
         }
 
         private void ConfigurarEstados(ControladorBase controlador)
@@ -131,6 +144,7 @@ namespace FestasInfantis.WinApp
             btnAdicionarItens.Enabled = controlador.AdicionarItensHabilitado;
             btnConcluirItens.Enabled = controlador.ConcluirItensHabilitado;
             btnVisualizarAlugueis.Enabled = controlador.VisualizarAlugueisHabilitado;
+            btnConfigurarDescontos.Enabled = controlador.ConfigurarDescontosHabilitado;
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -166,6 +180,11 @@ namespace FestasInfantis.WinApp
         private void btnVisualizarAlugueis_Click(object sender, EventArgs e)
         {
             (controlador as ControladorCliente)!.VisualizarAlugueis();
+        }
+
+        private void btnConfigurarDescontos_Click(object sender, EventArgs e)
+        {
+            (controlador as ControladorAluguel)!.ConfigurarDescontos();
         }
     }
 }

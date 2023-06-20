@@ -6,19 +6,20 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 {
     public partial class TelaAluguelForm : Form
     {
-        private IRepositorioAluguel repositorioAluguel;
-        private IRepositorioCliente repositorioCliente;
-        private IRepositorioTema repositorioTema;
+        private List<Cliente> clientes;
+        private List<Tema> temas;
+        private ConfiguracaoDesconto configuracaoDesconto;
 
-        public TelaAluguelForm(IRepositorioAluguel repositorioAluguel, IRepositorioCliente repositorioCliente, IRepositorioTema repositorioTema)
+        public TelaAluguelForm(ConfiguracaoDesconto configuracaoDesconto, List<Cliente> repositorioCliente, List<Tema> repositorioTema)
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
 
-            this.repositorioAluguel = repositorioAluguel;
-            this.repositorioCliente = repositorioCliente;
-            this.repositorioTema = repositorioTema;
+            this.configuracaoDesconto = configuracaoDesconto;
+
+            clientes = repositorioCliente;
+            temas = repositorioTema;
 
             ConfigurarDependencias();
         }
@@ -39,6 +40,8 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             Tema tema = (Tema)cmbTemas.SelectedValue;
 
             decimal porcentagemEntrada = Convert.ToDecimal(txtPorcentagemEntrada.Text);
+
+            // definir desconto
             decimal porcentagemDesconto = Convert.ToDecimal(txtPorcentagemDesconto.Text);
 
             Aluguel aluguel = new Aluguel(cliente, festa, tema, porcentagemEntrada, porcentagemDesconto);
@@ -49,31 +52,36 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             return aluguel;
         }
 
-
         public void ConfigurarTela(Aluguel aluguel)
         {
-            //txtId.Text = cliente.id.ToString();
+            txtId.Text = aluguel.id.ToString();
 
-            //txtNome.Text = cliente.nome;
+            txtDataFesta.Text = aluguel.Festa.Data.ToString();
 
-            //txtTelefone.Text = cliente.telefone;
+            txtHorarioInicio.Text = aluguel.Festa.HorarioInicio.ToString();
+            txtHorarioTermino.Text = aluguel.Festa.HorarioTermino.ToString();
+
+            txtCidade.Text = aluguel.Festa.Endereco.Cidade;
+            txtEstado.Text = aluguel.Festa.Endereco.Estado;
+            txtRua.Text = aluguel.Festa.Endereco.Rua;
+            txtBairro.Text = aluguel.Festa.Endereco.Bairro;
+            txtNumero.Text = aluguel.Festa.Endereco.Numero;
+
+            cmbClientes.SelectedItem = aluguel.Cliente;
+
+            cmbTemas.SelectedItem = aluguel.Tema;
         }
 
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-
-        }
-        
         private void ConfigurarDependencias()
         {
             cmbClientes.Items.Clear();
 
-            foreach (Cliente cliente in repositorioCliente.SelecionarTodos())
+            foreach (Cliente cliente in clientes)
                 cmbClientes.Items.Add(cliente);
 
             cmbTemas.Items.Clear();
 
-            foreach (Tema tema in repositorioTema.SelecionarTodos())
+            foreach (Tema tema in temas)
                 cmbTemas.Items.Add(tema);
         }
 
@@ -86,6 +94,29 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             string numero = txtNumero.Text;
 
             return new Endereco(rua, bairro, cidade, estado, numero);
+        }
+
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            Aluguel aluguel = ObterAluguel();
+
+            string[] erros = aluguel.Validar();
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void AtualizarPorcentualDesconto(object sender, EventArgs e)
+        {
+            Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
+
+            decimal porcentagemDesconto = clienteSelecionado.CalcularDesconto(configuracaoDesconto);
+
+            txtPorcentagemDesconto.Text = porcentagemDesconto.ToString();
         }
     }
 }
