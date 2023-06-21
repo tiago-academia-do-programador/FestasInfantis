@@ -48,11 +48,12 @@
             btnAdicionarItens = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnVisualizarAlugueis = new ToolStripButton();
+            toolStripSeparator4 = new ToolStripSeparator();
             btnConfigurarDescontos = new ToolStripButton();
+            toolStripSeparator5 = new ToolStripSeparator();
             labelTipoCadastro = new ToolStripLabel();
             panelRegistros = new Panel();
-            toolStripSeparator4 = new ToolStripSeparator();
-            toolStripSeparator5 = new ToolStripSeparator();
+            btnConcluirAluguel = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             barraFerramentas.SuspendLayout();
@@ -77,7 +78,7 @@
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(180, 22);
+            clientesMenuItem.Size = new Size(120, 22);
             clientesMenuItem.Text = "Clientes";
             clientesMenuItem.Click += clientesMenuItem_Click;
             // 
@@ -85,7 +86,7 @@
             // 
             temasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { itensToolStripMenuItem });
             temasMenuItem.Name = "temasMenuItem";
-            temasMenuItem.Size = new Size(180, 22);
+            temasMenuItem.Size = new Size(120, 22);
             temasMenuItem.Text = "Temas";
             temasMenuItem.Click += temasMenuItem_Click;
             // 
@@ -99,7 +100,7 @@
             // alugueisToolStripMenuItem
             // 
             alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
-            alugueisToolStripMenuItem.Size = new Size(180, 22);
+            alugueisToolStripMenuItem.Size = new Size(120, 22);
             alugueisToolStripMenuItem.Text = "Aluguéis";
             alugueisToolStripMenuItem.Click += alugueisToolStripMenuItem_Click;
             // 
@@ -127,7 +128,7 @@
             // barraFerramentas
             // 
             barraFerramentas.Enabled = false;
-            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, toolStripSeparator1, btnVisualizarAlugueis, toolStripSeparator4, btnConfigurarDescontos, toolStripSeparator5, labelTipoCadastro });
+            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, toolStripSeparator1, btnVisualizarAlugueis, toolStripSeparator4, btnConcluirAluguel, btnConfigurarDescontos, toolStripSeparator5, labelTipoCadastro });
             barraFerramentas.Location = new Point(0, 24);
             barraFerramentas.Name = "barraFerramentas";
             barraFerramentas.Size = new Size(800, 45);
@@ -215,6 +216,11 @@
             btnVisualizarAlugueis.Size = new Size(42, 42);
             btnVisualizarAlugueis.Click += btnVisualizarAlugueis_Click;
             // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(6, 45);
+            // 
             // btnConfigurarDescontos
             // 
             btnConfigurarDescontos.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -224,6 +230,11 @@
             btnConfigurarDescontos.Size = new Size(23, 42);
             btnConfigurarDescontos.Text = "btnConfigurarDescontos";
             btnConfigurarDescontos.Click += btnConfigurarDescontos_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(6, 45);
             // 
             // labelTipoCadastro
             // 
@@ -240,15 +251,15 @@
             panelRegistros.Size = new Size(800, 359);
             panelRegistros.TabIndex = 3;
             // 
-            // toolStripSeparator4
+            // btnConcluirAluguel
             // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 45);
-            // 
-            // toolStripSeparator5
-            // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 45);
+            btnConcluirAluguel.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConcluirAluguel.Image = (Image)resources.GetObject("btnConcluirAluguel.Image");
+            btnConcluirAluguel.ImageTransparentColor = Color.Magenta;
+            btnConcluirAluguel.Name = "btnConcluirAluguel";
+            btnConcluirAluguel.Size = new Size(23, 42);
+            btnConcluirAluguel.Text = "btnConfigurarDescontos";
+            btnConcluirAluguel.Click += btnConcluirAluguel_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -304,5 +315,6 @@
         private ToolStripButton btnConfigurarDescontos;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripSeparator toolStripSeparator5;
+        private ToolStripButton btnConcluirAluguel;
     }
 }

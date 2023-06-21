@@ -3,73 +3,6 @@ using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.Dominio.ModuloAluguel
 {
-    public class Endereco
-    {
-        public Endereco(string rua, string bairro, string cidade, string estado, string numero)
-        {
-            Rua = rua;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
-            Numero = numero;
-        }
-
-        public string Rua { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Numero { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Rua}, {Bairro}, {Numero}, {Cidade}, {Estado}";
-        }
-    }
-
-    public class Festa
-    {
-        public Endereco Endereco { get; set; }
-        public DateTime Data { get; set; }
-        public TimeSpan HorarioInicio { get; set; }
-        public TimeSpan HorarioTermino { get; set; }
-
-        public Festa(Endereco endereco, DateTime data, TimeSpan horarioInicio, TimeSpan horarioTermino)
-        {
-            Endereco = endereco;
-            Data = data;
-            HorarioInicio = horarioInicio;
-            HorarioTermino = horarioTermino;
-        }
-
-        public string[] Validar()
-        {
-            List<string> erros = new List<string>();
-
-            if (Data < DateTime.Today)
-                erros.Add("A data da festa não pode ser no passado!");
-
-            if (HorarioTermino < HorarioInicio)
-                erros.Add("O horário de término não pode ser antes do início!");
-
-            if (string.IsNullOrEmpty(Endereco.Cidade))
-                erros.Add("O campo 'Cidade' é obrigatório!");
-
-            if (string.IsNullOrEmpty(Endereco.Estado))
-                erros.Add("O campo 'Estado' é obrigatório!");
-
-            if (string.IsNullOrEmpty(Endereco.Rua))
-                erros.Add("O campo 'Rua' é obrigatório!");
-            
-            if (string.IsNullOrEmpty(Endereco.Bairro))
-                erros.Add("O campo 'Bairro' é obrigatório!");
-
-            if (string.IsNullOrEmpty(Endereco.Numero))
-                erros.Add("O campo 'Número' é obrigatório!");
-
-            return erros.ToArray();
-        }
-    }
-
     public class Aluguel : EntidadeBase<Aluguel>
     {
         public Cliente Cliente { get; private set; }
@@ -77,6 +10,18 @@ namespace FestasInfantis.Dominio.ModuloAluguel
         public Tema Tema { get; private set; }
         public decimal PorcentagemSinal { get; private set; }
         public decimal PorcentagemDesconto { get; private set; }
+        public bool Concluido { get; private set; }
+
+        public Aluguel(int id, Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
+        {
+            this.id = id;
+            Cliente = cliente;
+            Festa = festa;
+            Tema = tema;
+            PorcentagemSinal = porcentagemSinal;
+            PorcentagemDesconto = porcentagemDesconto;
+            Concluido = false;
+        }
 
         public Aluguel(Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
         {
@@ -85,6 +30,7 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             Tema = tema;
             PorcentagemSinal = porcentagemSinal;
             PorcentagemDesconto = porcentagemDesconto;
+            Concluido = false;
         }
 
         public decimal CalcularValorPendente()
@@ -102,6 +48,11 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             return Tema.CalcularValor() - Tema.CalcularValor() * PorcentagemDesconto / 100;
         }
 
+        public void Concluir()
+        {
+            Concluido = true;
+        }
+
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
             Cliente = registroAtualizado.Cliente;
@@ -109,6 +60,7 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             Tema = registroAtualizado.Tema;
             PorcentagemDesconto = registroAtualizado.PorcentagemDesconto;
             PorcentagemSinal = registroAtualizado.PorcentagemSinal;
+            Concluido = registroAtualizado.Concluido;
         }
 
         public override string[] Validar()

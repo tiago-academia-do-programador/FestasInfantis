@@ -31,8 +31,15 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         public override string ToolTipEditar { get { return "Editar Aluguel existente"; } }
             
         public override string ToolTipExcluir { get { return "Excluir Aluguel existente"; } }
+        public override string ToolTipFiltrar { get { return "Filtrar Alugueis"; } }
         
+        public override string ToolTipConcluirAluguel { get { return "Concluir Aluguel"; } }
+
         public override string ToolTipConfigurarDescontos { get { return "Configurar Descontos de Aluguel"; } }
+
+        public override bool FiltrarHabilitado { get { return true; } }
+
+        public override bool ConcluirAluguelHabilitado { get { return true; } }
 
         public override bool ConfigurarDescontosHabilitado { get { return true; } }
 
@@ -115,6 +122,48 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
         }
 
+
+        public void ConcluirAluguel()
+        {
+            Aluguel aluguel = ObterAluguelSelecionado();
+
+            if (aluguel == null)
+            {
+                MessageBox.Show($"Selecione um aluguel primeiro!",
+                    "Conclusão de Alugueis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            if (aluguel.Concluido)
+            {
+                MessageBox.Show($"O aluguel já está concluído!",
+                    "Conclusão de Alugueis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            TelaConclusaoAluguel telaConclusaoAluguel =
+                new TelaConclusaoAluguel(aluguel, repositorioDesconto.ObterConfiguracao());
+
+            DialogResult opcaoEscolhida = telaConclusaoAluguel.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Aluguel aluguelParaConclusao = telaConclusaoAluguel.ObterAluguel();
+
+                aluguelParaConclusao.Concluir();
+
+                repositorioAluguel.Editar(aluguelParaConclusao.id, aluguelParaConclusao);
+            }
+
+            CarregarAlugueis();
+        }
+
         public void ConfigurarDescontos()
         {
             ConfiguracaoDesconto configuracao = repositorioDesconto.ObterConfiguracao();
@@ -159,5 +208,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             return repositorioAluguel.SelecionarPorId(id);
         }
+
     }
 }

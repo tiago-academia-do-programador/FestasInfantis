@@ -34,7 +34,7 @@ namespace FestasInfantis.WinApp
             new RepositorioTemaEmMemoria(ConfigurarTemas());
 
         private IRepositorioAluguel repositorioAluguel =
-            new RepositorioAluguelEmMemoria(new List<Aluguel>());
+            new RepositorioAluguelEmMemoria(ConfigurarAlugueis());
 
         private static TelaPrincipalForm telaPrincipal;
 
@@ -130,6 +130,7 @@ namespace FestasInfantis.WinApp
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
             btnVisualizarAlugueis.ToolTipText = controlador.ToolTipVisualizarAlugueis;
+            btnConcluirAluguel.ToolTipText = controlador.ToolTipConcluirAluguel;
             btnConfigurarDescontos.ToolTipText = controlador.ToolTipConfigurarDescontos;
         }
 
@@ -141,6 +142,7 @@ namespace FestasInfantis.WinApp
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnAdicionarItens.Enabled = controlador.AdicionarItensHabilitado;
             btnVisualizarAlugueis.Enabled = controlador.VisualizarAlugueisHabilitado;
+            btnConcluirAluguel.Enabled = controlador.ConcluirAluguelHabilitado;
             btnConfigurarDescontos.Enabled = controlador.ConfigurarDescontosHabilitado;
         }
 
@@ -172,6 +174,12 @@ namespace FestasInfantis.WinApp
         private void btnConcluirItens_Click(object sender, EventArgs e)
         {
             controlador.ConcluirItens();
+        }
+
+
+        private void btnConcluirAluguel_Click(object sender, EventArgs e)
+        {
+            (controlador as ControladorAluguel)!.ConcluirAluguel();
         }
 
         private void btnVisualizarAlugueis_Click(object sender, EventArgs e)
@@ -226,6 +234,32 @@ namespace FestasInfantis.WinApp
             clientes.Add(cliente2);
 
             return clientes;
+        }
+
+        private static List<Aluguel> ConfigurarAlugueis()
+        {
+            List<Aluguel> alugueis = new List<Aluguel>();
+
+            Endereco endereco = new Endereco("Marechal Deodoro", "Centro", "Lages", "SC", "40");
+            Festa festa = new Festa(endereco, DateTime.Now, TimeSpan.Parse("1200"), TimeSpan.Parse("1800"));
+
+            Cliente cliente = new Cliente(1, "Tiago Santini", "(49) 98505-6251");
+
+            List<Item> itens = new List<Item>();
+
+            Item item = new Item(1, "Mesa Grande x50", 150m);
+            Item item2 = new Item(2, "Chapéu do Mickey x25", 50m);
+
+            itens.Add(item);
+            itens.Add(item2);
+
+            Tema tema = new Tema(1, "Festa de Aniversário", itens);
+
+            Aluguel aluguel = new Aluguel(1, cliente, festa, tema, 40, 0.0m);
+
+            alugueis.Add(aluguel);
+
+            return alugueis;
         }
     }
 }
