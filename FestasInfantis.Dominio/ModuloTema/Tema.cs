@@ -6,13 +6,6 @@ namespace FestasInfantis.Dominio.ModuloTema
     {
         public string nome;
 
-        public decimal Valor
-        { 
-            get 
-            { 
-                return Itens.Aggregate(0m, (soma, item) => soma + item.valor);
-            }
-        }
         public List<Item> Itens { get; set; }
 
         public Tema(int id, string descricao, List<Item> itens)
@@ -26,6 +19,11 @@ namespace FestasInfantis.Dominio.ModuloTema
         {
             nome = descricao;
             Itens = itens;
+        }
+
+        public decimal CalcularValor()
+        {
+            return Itens.Aggregate(0m, (soma, item) => soma + item.valor);
         }
 
         public override void AtualizarInformacoes(Tema registroAtualizado)
@@ -50,7 +48,7 @@ namespace FestasInfantis.Dominio.ModuloTema
             if (nome.Length < 3)
                 erros.Add("O campo 'Nome' deve conter no mínimo 3 caracteres");
 
-            if (Valor < 1)
+            if (CalcularValor() < 1)
                 erros.Add("O campo 'Valor' não pode receber o valor 0");
 
             return erros.ToArray();

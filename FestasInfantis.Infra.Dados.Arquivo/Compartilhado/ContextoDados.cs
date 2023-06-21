@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
-using FestasInfantis.Dominio.Compartilhado;
+using FestasInfantis.Dominio.ModuloAluguel;
 
 namespace FestasInfantis.Infra.Dados.Arquivo.Compartilhado
 {

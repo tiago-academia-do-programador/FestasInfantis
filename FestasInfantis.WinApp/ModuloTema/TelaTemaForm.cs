@@ -94,7 +94,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             txtNome.Text = tema.nome;
 
-            txtValor.Text = tema.Valor.ToString();
+            txtValor.Text = tema.CalcularValor().ToString();
 
             ConfigurarGridItens(tema.Itens);
         }

@@ -21,7 +21,11 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             clientes = repositorioCliente;
             temas = repositorioTema;
 
-            ConfigurarDependencias();
+            ConfigurarComboBoxes();
+
+            cmbEntrada.Items.Add(40m);
+            cmbEntrada.Items.Add(50m);
+            cmbEntrada.SelectedIndex = 0;
         }
 
         public Aluguel ObterAluguel()
@@ -30,18 +34,17 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             DateTime data = txtDataFesta.Value;
 
-            TimeSpan horarioInicio = txtHorarioInicio.Value.TimeOfDay;
-            TimeSpan horarioTermino = txtHorarioTermino.Value.TimeOfDay;
+            TimeSpan horarioInicio = TimeSpan.Parse(txtHorarioInicio.Text);
+            TimeSpan horarioTermino = TimeSpan.Parse(txtHorarioTermino.Text);
 
             Festa festa = new Festa(ObterDadosEndereco(), data, horarioInicio, horarioTermino);
 
-            Cliente cliente = (Cliente)cmbClientes.SelectedValue;
+            Cliente cliente = (Cliente)cmbClientes.SelectedItem;
 
-            Tema tema = (Tema)cmbTemas.SelectedValue;
+            Tema tema = (Tema)cmbTemas.SelectedItem;
 
-            decimal porcentagemEntrada = Convert.ToDecimal(txtPorcentagemEntrada.Text);
+            decimal porcentagemEntrada = Convert.ToDecimal(cmbEntrada.SelectedItem);
 
-            // definir desconto
             decimal porcentagemDesconto = Convert.ToDecimal(txtPorcentagemDesconto.Text);
 
             Aluguel aluguel = new Aluguel(cliente, festa, tema, porcentagemEntrada, porcentagemDesconto);
@@ -70,9 +73,11 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             cmbClientes.SelectedItem = aluguel.Cliente;
 
             cmbTemas.SelectedItem = aluguel.Tema;
+
+            cmbEntrada.SelectedItem = aluguel.PorcentagemSinal;
         }
 
-        private void ConfigurarDependencias()
+        private void ConfigurarComboBoxes()
         {
             cmbClientes.Items.Clear();
 
@@ -96,6 +101,13 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             return new Endereco(rua, bairro, cidade, estado, numero);
         }
 
+        private void AtualizarTabelaValores()
+        {
+            txtValorPendente.Text = ObterAluguel().CalcularValorPendente().ToString();
+            txtValorSinal.Text = ObterAluguel().CalcularValorSinal().ToString();
+            txtValorDesconto.Text = ObterAluguel().CalcularValorDesconto().ToString();
+        }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             Aluguel aluguel = ObterAluguel();
@@ -110,13 +122,42 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             }
         }
 
-        private void AtualizarPorcentualDesconto(object sender, EventArgs e)
+        private void AtualizarPorcentagemDesconto(object sender, EventArgs e)
         {
             Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
 
             decimal porcentagemDesconto = clienteSelecionado.CalcularDesconto(configuracaoDesconto);
 
             txtPorcentagemDesconto.Text = porcentagemDesconto.ToString();
+
+            if (clienteSelecionado != null)
+                pnlTema.Enabled = true;
+            else
+                pnlTema.Enabled = false;
+        }
+
+        private void AtualizarValorTotal(object sender, EventArgs e)
+        {
+            Tema temaSelecionado = (Tema)cmbTemas.SelectedItem;
+
+            decimal valorTotal = temaSelecionado.CalcularValor();
+
+            txtValorTema.Text = valorTotal.ToString();
+
+            if (temaSelecionado != null)
+                pnlDadosAluguel.Enabled = true;
+            else
+                pnlDadosAluguel.Enabled = false;
+
+            AtualizarTabelaValores();
+        }
+
+        private void AtualizarPorcentagemEntrada(object sender, EventArgs e)
+        {
+            Tema temaSelecionado = (Tema)cmbTemas.SelectedItem;
+
+            if (temaSelecionado != null)
+                AtualizarTabelaValores();
         }
     }
 }

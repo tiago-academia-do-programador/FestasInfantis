@@ -1,4 +1,6 @@
-﻿namespace FestasInfantis.WinApp
+﻿using FestasInfantis.Dominio.ModuloAluguel;
+
+namespace FestasInfantis.WinApp
 {
     public partial class TelaConfiguracaoDesconto : Form
     {
@@ -29,6 +31,8 @@
 
                 DialogResult = DialogResult.None;
             }
+            else
+                TelaPrincipalForm.Instancia.AtualizarRodape("Configurações de Desconto salvas com sucesso!");
         }
 
         public ConfiguracaoDesconto ObterConfiguracaoDesconto()

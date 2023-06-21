@@ -32,10 +32,6 @@
             txtId = new TextBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            txtHorarioTermino = new DateTimePicker();
-            lblHorarioTermino = new Label();
-            txtHorarioInicio = new DateTimePicker();
-            lblHorarioInicio = new Label();
             pnlEndereco = new GroupBox();
             txtNumero = new TextBox();
             lblNumero = new Label();
@@ -47,8 +43,13 @@
             txtBairro = new TextBox();
             lblBairro = new Label();
             lblCidade = new Label();
+            groupBox1 = new GroupBox();
+            txtHorarioInicio = new MaskedTextBox();
+            txtHorarioTermino = new MaskedTextBox();
+            lblHorarioTermino = new Label();
             txtDataFesta = new DateTimePicker();
             lblData = new Label();
+            lblHorarioInicio = new Label();
             tabPage2 = new TabPage();
             pnlCliente = new GroupBox();
             cmbClientes = new ComboBox();
@@ -61,7 +62,7 @@
             label3 = new Label();
             lblNomeTema = new Label();
             pnlDadosAluguel = new GroupBox();
-            txtPorcentagemEntrada = new TextBox();
+            cmbEntrada = new ComboBox();
             label1 = new Label();
             txtValorSinal = new TextBox();
             label2 = new Label();
@@ -74,6 +75,7 @@
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             pnlEndereco.SuspendLayout();
+            groupBox1.SuspendLayout();
             tabPage2.SuspendLayout();
             pnlCliente.SuspendLayout();
             pnlTema.SuspendLayout();
@@ -97,6 +99,7 @@
             txtId.ReadOnly = true;
             txtId.Size = new Size(77, 23);
             txtId.TabIndex = 1;
+            txtId.Text = "0";
             // 
             // tabControl1
             // 
@@ -106,17 +109,12 @@
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(521, 375);
-            tabControl1.TabIndex = 2;
+            tabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(txtHorarioTermino);
-            tabPage1.Controls.Add(lblHorarioTermino);
-            tabPage1.Controls.Add(txtHorarioInicio);
-            tabPage1.Controls.Add(lblHorarioInicio);
             tabPage1.Controls.Add(pnlEndereco);
-            tabPage1.Controls.Add(txtDataFesta);
-            tabPage1.Controls.Add(lblData);
+            tabPage1.Controls.Add(groupBox1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -124,40 +122,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Dados da Festa";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // txtHorarioTermino
-            // 
-            txtHorarioTermino.Format = DateTimePickerFormat.Time;
-            txtHorarioTermino.Location = new Point(388, 79);
-            txtHorarioTermino.Name = "txtHorarioTermino";
-            txtHorarioTermino.Size = new Size(85, 23);
-            txtHorarioTermino.TabIndex = 9;
-            // 
-            // lblHorarioTermino
-            // 
-            lblHorarioTermino.AutoSize = true;
-            lblHorarioTermino.Location = new Point(270, 85);
-            lblHorarioTermino.Name = "lblHorarioTermino";
-            lblHorarioTermino.Size = new Size(112, 15);
-            lblHorarioTermino.TabIndex = 8;
-            lblHorarioTermino.Text = "Horário de Termino:";
-            // 
-            // txtHorarioInicio
-            // 
-            txtHorarioInicio.Format = DateTimePickerFormat.Time;
-            txtHorarioInicio.Location = new Point(126, 79);
-            txtHorarioInicio.Name = "txtHorarioInicio";
-            txtHorarioInicio.Size = new Size(85, 23);
-            txtHorarioInicio.TabIndex = 7;
-            // 
-            // lblHorarioInicio
-            // 
-            lblHorarioInicio.AutoSize = true;
-            lblHorarioInicio.Location = new Point(22, 85);
-            lblHorarioInicio.Name = "lblHorarioInicio";
-            lblHorarioInicio.Size = new Size(98, 15);
-            lblHorarioInicio.TabIndex = 6;
-            lblHorarioInicio.Text = "Horário de Início:";
             // 
             // pnlEndereco
             // 
@@ -185,7 +149,7 @@
             txtNumero.Location = new Point(351, 97);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(100, 23);
-            txtNumero.TabIndex = 19;
+            txtNumero.TabIndex = 7;
             // 
             // lblNumero
             // 
@@ -203,7 +167,7 @@
             txtEstado.Location = new Point(351, 39);
             txtEstado.Name = "txtEstado";
             txtEstado.Size = new Size(100, 23);
-            txtEstado.TabIndex = 17;
+            txtEstado.TabIndex = 4;
             // 
             // lblEstado
             // 
@@ -221,7 +185,7 @@
             txtRua.Location = new Point(83, 68);
             txtRua.Name = "txtRua";
             txtRua.Size = new Size(368, 23);
-            txtRua.TabIndex = 15;
+            txtRua.TabIndex = 5;
             // 
             // lblRua
             // 
@@ -238,16 +202,16 @@
             txtCidade.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtCidade.Location = new Point(83, 39);
             txtCidade.Name = "txtCidade";
-            txtCidade.Size = new Size(100, 23);
-            txtCidade.TabIndex = 13;
+            txtCidade.Size = new Size(154, 23);
+            txtCidade.TabIndex = 3;
             // 
             // txtBairro
             // 
             txtBairro.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtBairro.Location = new Point(83, 97);
             txtBairro.Name = "txtBairro";
-            txtBairro.Size = new Size(100, 23);
-            txtBairro.TabIndex = 12;
+            txtBairro.Size = new Size(184, 23);
+            txtBairro.TabIndex = 6;
             // 
             // lblBairro
             // 
@@ -269,22 +233,82 @@
             lblCidade.TabIndex = 10;
             lblCidade.Text = "Cidade:";
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(txtHorarioInicio);
+            groupBox1.Controls.Add(txtHorarioTermino);
+            groupBox1.Controls.Add(lblHorarioTermino);
+            groupBox1.Controls.Add(txtDataFesta);
+            groupBox1.Controls.Add(lblData);
+            groupBox1.Controls.Add(lblHorarioInicio);
+            groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox1.Location = new Point(25, 16);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(465, 135);
+            groupBox1.TabIndex = 9;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Data e Hora:";
+            // 
+            // txtHorarioInicio
+            // 
+            txtHorarioInicio.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtHorarioInicio.Location = new Point(117, 74);
+            txtHorarioInicio.Mask = "00:00";
+            txtHorarioInicio.Name = "txtHorarioInicio";
+            txtHorarioInicio.Size = new Size(56, 23);
+            txtHorarioInicio.TabIndex = 10;
+            txtHorarioInicio.Text = "1300";
+            txtHorarioInicio.ValidatingType = typeof(DateTime);
+            // 
+            // txtHorarioTermino
+            // 
+            txtHorarioTermino.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtHorarioTermino.Location = new Point(377, 74);
+            txtHorarioTermino.Mask = "00:00";
+            txtHorarioTermino.Name = "txtHorarioTermino";
+            txtHorarioTermino.Size = new Size(56, 23);
+            txtHorarioTermino.TabIndex = 9;
+            txtHorarioTermino.Text = "1900";
+            txtHorarioTermino.ValidatingType = typeof(DateTime);
+            // 
+            // lblHorarioTermino
+            // 
+            lblHorarioTermino.AutoSize = true;
+            lblHorarioTermino.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHorarioTermino.Location = new Point(259, 79);
+            lblHorarioTermino.Name = "lblHorarioTermino";
+            lblHorarioTermino.Size = new Size(112, 15);
+            lblHorarioTermino.TabIndex = 8;
+            lblHorarioTermino.Text = "Horário de Termino:";
+            // 
             // txtDataFesta
             // 
+            txtDataFesta.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtDataFesta.Format = DateTimePickerFormat.Short;
-            txtDataFesta.Location = new Point(126, 39);
+            txtDataFesta.Location = new Point(117, 34);
             txtDataFesta.Name = "txtDataFesta";
-            txtDataFesta.Size = new Size(103, 23);
-            txtDataFesta.TabIndex = 4;
+            txtDataFesta.Size = new Size(85, 23);
+            txtDataFesta.TabIndex = 0;
             // 
             // lblData
             // 
             lblData.AutoSize = true;
-            lblData.Location = new Point(40, 45);
+            lblData.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblData.Location = new Point(31, 40);
             lblData.Name = "lblData";
             lblData.Size = new Size(80, 15);
             lblData.TabIndex = 3;
             lblData.Text = "Data da Festa:";
+            // 
+            // lblHorarioInicio
+            // 
+            lblHorarioInicio.AutoSize = true;
+            lblHorarioInicio.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHorarioInicio.Location = new Point(13, 80);
+            lblHorarioInicio.Name = "lblHorarioInicio";
+            lblHorarioInicio.Size = new Size(98, 15);
+            lblHorarioInicio.TabIndex = 6;
+            lblHorarioInicio.Text = "Horário de Início:";
             // 
             // tabPage2
             // 
@@ -321,8 +345,8 @@
             cmbClientes.Location = new Point(66, 37);
             cmbClientes.Name = "cmbClientes";
             cmbClientes.Size = new Size(218, 23);
-            cmbClientes.TabIndex = 18;
-            cmbClientes.SelectedIndexChanged += AtualizarPorcentualDesconto;
+            cmbClientes.TabIndex = 9;
+            cmbClientes.SelectedIndexChanged += AtualizarPorcentagemDesconto;
             // 
             // txtPorcentagemDesconto
             // 
@@ -333,6 +357,7 @@
             txtPorcentagemDesconto.ReadOnly = true;
             txtPorcentagemDesconto.Size = new Size(56, 23);
             txtPorcentagemDesconto.TabIndex = 17;
+            txtPorcentagemDesconto.Text = "0";
             // 
             // label5
             // 
@@ -360,6 +385,7 @@
             pnlTema.Controls.Add(txtValorTema);
             pnlTema.Controls.Add(label3);
             pnlTema.Controls.Add(lblNomeTema);
+            pnlTema.Enabled = false;
             pnlTema.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             pnlTema.Location = new Point(22, 115);
             pnlTema.Name = "pnlTema";
@@ -376,7 +402,8 @@
             cmbTemas.Location = new Point(66, 37);
             cmbTemas.Name = "cmbTemas";
             cmbTemas.Size = new Size(218, 23);
-            cmbTemas.TabIndex = 18;
+            cmbTemas.TabIndex = 10;
+            cmbTemas.SelectedIndexChanged += AtualizarValorTotal;
             // 
             // txtValorTema
             // 
@@ -410,7 +437,7 @@
             // 
             // pnlDadosAluguel
             // 
-            pnlDadosAluguel.Controls.Add(txtPorcentagemEntrada);
+            pnlDadosAluguel.Controls.Add(cmbEntrada);
             pnlDadosAluguel.Controls.Add(label1);
             pnlDadosAluguel.Controls.Add(txtValorSinal);
             pnlDadosAluguel.Controls.Add(label2);
@@ -418,6 +445,7 @@
             pnlDadosAluguel.Controls.Add(txtValorPendente);
             pnlDadosAluguel.Controls.Add(lblValorPendente);
             pnlDadosAluguel.Controls.Add(label4);
+            pnlDadosAluguel.Enabled = false;
             pnlDadosAluguel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             pnlDadosAluguel.Location = new Point(22, 205);
             pnlDadosAluguel.Name = "pnlDadosAluguel";
@@ -426,13 +454,16 @@
             pnlDadosAluguel.TabStop = false;
             pnlDadosAluguel.Text = "Dados do Aluguel:";
             // 
-            // txtPorcentagemEntrada
+            // cmbEntrada
             // 
-            txtPorcentagemEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPorcentagemEntrada.Location = new Point(351, 51);
-            txtPorcentagemEntrada.Name = "txtPorcentagemEntrada";
-            txtPorcentagemEntrada.Size = new Size(56, 23);
-            txtPorcentagemEntrada.TabIndex = 17;
+            cmbEntrada.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cmbEntrada.FormattingEnabled = true;
+            cmbEntrada.Location = new Point(351, 51);
+            cmbEntrada.Name = "cmbEntrada";
+            cmbEntrada.Size = new Size(58, 23);
+            cmbEntrada.TabIndex = 11;
+            cmbEntrada.SelectedIndexChanged += AtualizarPorcentagemEntrada;
             // 
             // label1
             // 
@@ -511,7 +542,7 @@
             btnCancelar.Location = new Point(473, 479);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 41);
-            btnCancelar.TabIndex = 4;
+            btnCancelar.TabIndex = 13;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -522,7 +553,7 @@
             btnGravar.Location = new Point(392, 479);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 41);
-            btnGravar.TabIndex = 3;
+            btnGravar.TabIndex = 12;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -541,9 +572,10 @@
             Text = "Cadastro de Aluguéis";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             pnlEndereco.ResumeLayout(false);
             pnlEndereco.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             tabPage2.ResumeLayout(false);
             pnlCliente.ResumeLayout(false);
             pnlCliente.PerformLayout();
@@ -565,9 +597,7 @@
         private DateTimePicker txtDataFesta;
         private Label lblData;
         private GroupBox pnlEndereco;
-        private DateTimePicker txtHorarioInicio;
         private Label lblHorarioInicio;
-        private DateTimePicker txtHorarioTermino;
         private Label lblHorarioTermino;
         private Button btnCancelar;
         private Button btnGravar;
@@ -580,7 +610,6 @@
         private TextBox txtEstado;
         private Label lblEstado;
         private GroupBox pnlDadosAluguel;
-        private TextBox txtPorcentagemEntrada;
         private Label label1;
         private TextBox txtValorSinal;
         private Label label2;
@@ -600,5 +629,9 @@
         private Label lblNomeCliente;
         private TextBox txtNumero;
         private Label lblNumero;
+        private ComboBox cmbEntrada;
+        private GroupBox groupBox1;
+        private MaskedTextBox txtHorarioTermino;
+        private MaskedTextBox txtHorarioInicio;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FestasInfantis.Dominio.Compartilhado
+﻿using FestasInfantis.Dominio.ModuloAluguel;
+
+namespace FestasInfantis.Dominio.Compartilhado
 {
     public interface IRepositorioConfiguracaoDesconto
     {

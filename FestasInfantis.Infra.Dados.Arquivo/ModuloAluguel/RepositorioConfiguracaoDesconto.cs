@@ -1,7 +1,8 @@
 ﻿using FestasInfantis.Dominio.Compartilhado;
+using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Arquivo.Compartilhado;
 
-namespace FestasInfantis.Infra.Dados.Arquivo
+namespace FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel
 {
     public class RepositorioConfiguracaoDesconto : IRepositorioConfiguracaoDesconto
     {
@@ -9,7 +10,7 @@ namespace FestasInfantis.Infra.Dados.Arquivo
 
         public RepositorioConfiguracaoDesconto(ContextoDados contextoDados)
         {
-            this.contextoDados = contextoDados;    
+            this.contextoDados = contextoDados;
         }
 
         public void GravarMudancas(ConfiguracaoDesconto configuracaoDesconto)

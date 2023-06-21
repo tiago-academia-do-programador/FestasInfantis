@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            lblPorcentagemAluguel = new Label();
-            txtPorcentagemAluguel = new NumericUpDown();
             txtPorcentagemMaxima = new NumericUpDown();
             lblPorcentagemMaxima = new Label();
+            txtPorcentagemAluguel = new NumericUpDown();
+            lblPorcentagemAluguel = new Label();
             btnCancelar = new Button();
             btnGravar = new Button();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtPorcentagemAluguel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPorcentagemMaxima).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPorcentagemAluguel).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -54,39 +54,44 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Porcentagens de Desconto:";
             // 
-            // lblPorcentagemAluguel
+            // txtPorcentagemMaxima
             // 
-            lblPorcentagemAluguel.AutoSize = true;
-            lblPorcentagemAluguel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPorcentagemAluguel.Location = new Point(61, 37);
-            lblPorcentagemAluguel.Name = "lblPorcentagemAluguel";
-            lblPorcentagemAluguel.Size = new Size(189, 21);
-            lblPorcentagemAluguel.TabIndex = 0;
-            lblPorcentagemAluguel.Text = "Porcentagem por Aluguel:";
+            txtPorcentagemMaxima.DecimalPlaces = 2;
+            txtPorcentagemMaxima.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPorcentagemMaxima.Location = new Point(214, 122);
+            txtPorcentagemMaxima.Name = "txtPorcentagemMaxima";
+            txtPorcentagemMaxima.Size = new Size(70, 23);
+            txtPorcentagemMaxima.TabIndex = 3;
+            // 
+            // lblPorcentagemMaxima
+            // 
+            lblPorcentagemMaxima.AutoEllipsis = true;
+            lblPorcentagemMaxima.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPorcentagemMaxima.Location = new Point(18, 122);
+            lblPorcentagemMaxima.Name = "lblPorcentagemMaxima";
+            lblPorcentagemMaxima.Size = new Size(161, 37);
+            lblPorcentagemMaxima.TabIndex = 2;
+            lblPorcentagemMaxima.Text = "Máximo de Porcentagem de Desconto:";
+            lblPorcentagemMaxima.TextAlign = ContentAlignment.TopRight;
             // 
             // txtPorcentagemAluguel
             // 
-            txtPorcentagemAluguel.Location = new Point(120, 61);
+            txtPorcentagemAluguel.DecimalPlaces = 2;
+            txtPorcentagemAluguel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPorcentagemAluguel.Location = new Point(214, 61);
             txtPorcentagemAluguel.Name = "txtPorcentagemAluguel";
-            txtPorcentagemAluguel.Size = new Size(70, 29);
+            txtPorcentagemAluguel.Size = new Size(70, 23);
             txtPorcentagemAluguel.TabIndex = 1;
             // 
-            // numericUpDown1
+            // lblPorcentagemAluguel
             // 
-            txtPorcentagemMaxima.Location = new Point(120, 144);
-            txtPorcentagemMaxima.Name = "numericUpDown1";
-            txtPorcentagemMaxima.Size = new Size(70, 29);
-            txtPorcentagemMaxima.TabIndex = 3;
-            // 
-            // label1
-            // 
-            lblPorcentagemMaxima.AutoSize = true;
-            lblPorcentagemMaxima.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPorcentagemMaxima.Location = new Point(21, 120);
-            lblPorcentagemMaxima.Name = "label1";
-            lblPorcentagemMaxima.Size = new Size(275, 21);
-            lblPorcentagemMaxima.TabIndex = 2;
-            lblPorcentagemMaxima.Text = "Máximo de Porcentagem de Desconto:";
+            lblPorcentagemAluguel.AutoSize = true;
+            lblPorcentagemAluguel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPorcentagemAluguel.Location = new Point(33, 63);
+            lblPorcentagemAluguel.Name = "lblPorcentagemAluguel";
+            lblPorcentagemAluguel.Size = new Size(146, 15);
+            lblPorcentagemAluguel.TabIndex = 0;
+            lblPorcentagemAluguel.Text = "Porcentagem por Aluguel:";
             // 
             // btnCancelar
             // 
@@ -123,8 +128,8 @@
             Text = "Configuração de Descontos";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)txtPorcentagemAluguel).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPorcentagemMaxima).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPorcentagemAluguel).EndInit();
             ResumeLayout(false);
         }
 

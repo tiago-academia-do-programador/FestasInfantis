@@ -41,7 +41,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             TelaAluguelForm telaAluguel = 
                 new TelaAluguelForm(
                     repositorioDesconto.ObterConfiguracao(),
-                    repositorioAluguel.SelecionarTodos(),
                     repositorioCliente.SelecionarTodos(),
                     repositorioTema.SelecionarTodos());
 
@@ -59,7 +58,36 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Aluguel aluguel = ObterAluguelSelecionado();
+
+            if (aluguel == null)
+            {
+                MessageBox.Show($"Selecione um aluguel primeiro!",
+                    "Edição de Aluguel",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            TelaAluguelForm telaAluguel =
+                new TelaAluguelForm(
+                    repositorioDesconto.ObterConfiguracao(),
+                    repositorioCliente.SelecionarTodos(),
+                    repositorioTema.SelecionarTodos());
+
+            telaAluguel.ConfigurarTela(aluguel);
+
+            DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Aluguel aluguelAtualizado = telaAluguel.ObterAluguel();
+
+                repositorioAluguel.Editar(aluguelAtualizado.id, aluguelAtualizado);
+            }
+
+            CarregarAlugueis();
         }
 
         public override void Excluir()

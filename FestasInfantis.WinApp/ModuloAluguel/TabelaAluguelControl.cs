@@ -30,11 +30,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = "telefone",
-                    HeaderText = "Telefone do Cliente"
-                },
-                new DataGridViewTextBoxColumn()
-                {
                     Name = "tema",
                     HeaderText = "Tema"
                 },
@@ -64,7 +59,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             foreach (Aluguel aluguel in alugueis)
             {
-                gridAlugueis.Rows.Add(aluguel.id, aluguel.Cliente, aluguel.Tema, aluguel.Festa.Data, aluguel.Tema.Valor, aluguel.CalcularValorPendente());
+                gridAlugueis.Rows.Add(aluguel.id, aluguel.Cliente, aluguel.Tema, aluguel.Festa.Data.ToShortDateString(), aluguel.Tema.CalcularValor(), aluguel.CalcularValorPendente());
             }
         }
 

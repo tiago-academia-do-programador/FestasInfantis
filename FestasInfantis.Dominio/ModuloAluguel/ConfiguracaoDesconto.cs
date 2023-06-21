@@ -1,9 +1,13 @@
-﻿namespace FestasInfantis.Dominio.Compartilhado
+﻿namespace FestasInfantis.Dominio.ModuloAluguel
 {
     public class ConfiguracaoDesconto
     {
-        public decimal PorcentagemDesconto { get; private set; }
-        public decimal PorcentagemMaxima { get; private set; }
+        public decimal PorcentagemDesconto { get; set; }
+        public decimal PorcentagemMaxima { get; set; }
+
+        public ConfiguracaoDesconto()
+        {
+        }
 
         public ConfiguracaoDesconto(decimal porcentagemPorDesconto, decimal porcentagemMaxima)
         {

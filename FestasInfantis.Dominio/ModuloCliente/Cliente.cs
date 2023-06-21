@@ -9,19 +9,15 @@ namespace FestasInfantis.Dominio.ModuloCliente
         public string telefone;
 
         public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
-        public int QuantidadeAlugueis { get => Alugueis.Count; }
+        public int QuantidadeAlugueis { get { return Alugueis.Count; } }
 
-        public Cliente()
-        {
-        }
-
-        public Cliente(string nome, string telefone): this()
+        public Cliente(string nome, string telefone)
         {
             this.nome = nome;
             this.telefone = telefone;
         }
 
-        public Cliente(int id, string nome, string telefone): this()
+        public Cliente(int id, string nome, string telefone)
         {
             this.id = id;
             this.nome = nome;
@@ -41,7 +37,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
 
         public override string ToString()
         {
-            return $"{nome} {telefone}";
+            return $"{nome}";
         }
 
         public override string[] Validar()

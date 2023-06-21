@@ -2,8 +2,8 @@ using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
 using FestasInfantis.Dominio.ModuloItem;
 using FestasInfantis.Dominio.ModuloTema;
-using FestasInfantis.Infra.Dados.Arquivo;
 using FestasInfantis.Infra.Dados.Arquivo.Compartilhado;
+using FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Memoria.ModuleTema;
 using FestasInfantis.Infra.Dados.Memoria.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
@@ -25,14 +25,13 @@ namespace FestasInfantis.WinApp
             new RepositorioConfiguracaoDesconto(contextoDados);
 
         private IRepositorioCliente repositorioCliente =
-            new RepositorioClienteEmMemoria(new List<Cliente>());
-
-        private IRepositorioTema repositorioTema =
-            new RepositorioTemaEmMemoria(new List<Tema>());
+            new RepositorioClienteEmMemoria(ConfigurarClientes());
 
         private IRepositorioItem repositorioItem =
-            new RepositorioItemEmMemoria(new List<Item>());
+            new RepositorioItemEmMemoria(ConfigurarItens());
 
+        private IRepositorioTema repositorioTema =
+            new RepositorioTemaEmMemoria(ConfigurarTemas());
 
         private IRepositorioAluguel repositorioAluguel =
             new RepositorioAluguelEmMemoria(new List<Aluguel>());
@@ -130,7 +129,6 @@ namespace FestasInfantis.WinApp
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
-            btnConcluirItens.ToolTipText = controlador.ToolTipConcluirItens;
             btnVisualizarAlugueis.ToolTipText = controlador.ToolTipVisualizarAlugueis;
             btnConfigurarDescontos.ToolTipText = controlador.ToolTipConfigurarDescontos;
         }
@@ -142,7 +140,6 @@ namespace FestasInfantis.WinApp
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnAdicionarItens.Enabled = controlador.AdicionarItensHabilitado;
-            btnConcluirItens.Enabled = controlador.ConcluirItensHabilitado;
             btnVisualizarAlugueis.Enabled = controlador.VisualizarAlugueisHabilitado;
             btnConfigurarDescontos.Enabled = controlador.ConfigurarDescontosHabilitado;
         }
@@ -185,6 +182,50 @@ namespace FestasInfantis.WinApp
         private void btnConfigurarDescontos_Click(object sender, EventArgs e)
         {
             (controlador as ControladorAluguel)!.ConfigurarDescontos();
+        }
+
+        private static List<Item> ConfigurarItens()
+        {
+            List<Item> itens = new List<Item>();
+
+            Item item = new Item(1, "Mesa Grande x50", 150m);
+            Item item2 = new Item(2, "Chapéu do Mickey x25", 50m);
+
+            itens.Add(item);
+            itens.Add(item2);
+
+            return itens;
+        }
+
+        private static List<Tema> ConfigurarTemas()
+        {
+            List<Item> itens = new List<Item>();
+
+            Item item = new Item(1, "Mesa Grande x50", 150m);
+            Item item2 = new Item(2, "Chapéu do Mickey x25", 50m);
+
+            itens.Add(item);
+            itens.Add(item2);
+
+            List<Tema> temas = new List<Tema>();
+
+            Tema tema = new Tema(1, "Festa de Aniversário", itens);
+
+            temas.Add(tema);
+
+            return temas;
+        }
+
+        private static List<Cliente> ConfigurarClientes()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            Cliente cliente = new Cliente(1, "Tiago Santini", "(49) 98505-6251");
+            Cliente cliente2 = new Cliente(2, "Alexandre Rech", "(49) 99225-8850");
+            clientes.Add(cliente);
+            clientes.Add(cliente2);
+
+            return clientes;
         }
     }
 }
