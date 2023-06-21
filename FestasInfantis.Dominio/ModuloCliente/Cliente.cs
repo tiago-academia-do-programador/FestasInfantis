@@ -9,6 +9,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
         public string telefone;
 
         public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
+
         public int QuantidadeAlugueis { get => Alugueis.Count; }
 
         public Cliente()
