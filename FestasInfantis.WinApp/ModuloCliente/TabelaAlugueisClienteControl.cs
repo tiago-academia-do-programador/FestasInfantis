@@ -55,7 +55,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             foreach (Aluguel aluguel in alugueis)
             {
-                gridAlugueis.Rows.Add(aluguel.id, aluguel.Tema, aluguel.Tema.Valor);
+                gridAlugueis.Rows.Add(aluguel.id, aluguel.Tema, aluguel.Tema.CalcularValor());
             }
         }
 

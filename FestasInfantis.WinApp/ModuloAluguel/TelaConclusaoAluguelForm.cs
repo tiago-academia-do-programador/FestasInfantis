@@ -4,24 +4,19 @@ using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.WinApp.ModuloAluguel
 {
-    public partial class TelaAluguelForm : Form
+    public partial class TelaConclusaoAluguelForm : Form
     {
-        private List<Cliente> clientes;
-        private List<Tema> temas;
         private ConfiguracaoDesconto configuracaoDesconto;
 
-        public TelaAluguelForm(ConfiguracaoDesconto configuracaoDesconto, List<Cliente> repositorioCliente, List<Tema> repositorioTema)
+        public TelaConclusaoAluguelForm(Aluguel aluguel, ConfiguracaoDesconto configuracaoDesconto)
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
-
             this.configuracaoDesconto = configuracaoDesconto;
 
-            clientes = repositorioCliente;
-            temas = repositorioTema;
-
-            ConfigurarComboBoxes();
+            ConfigurarComboBoxes(aluguel);
+            ConfigurarTela(aluguel);
         }
 
         public Aluguel ObterAluguel()
@@ -51,7 +46,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             return aluguel;
         }
 
-        public void ConfigurarTela(Aluguel aluguel)
+        private void ConfigurarTela(Aluguel aluguel)
         {
             txtId.Text = aluguel.id.ToString();
 
@@ -73,23 +68,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             cmbEntrada.SelectedItem = aluguel.PorcentagemSinal;
         }
 
-        private void ConfigurarComboBoxes()
-        {
-            cmbClientes.Items.Clear();
-
-            foreach (Cliente cliente in clientes)
-                cmbClientes.Items.Add(cliente);
-
-            cmbTemas.Items.Clear();
-
-            foreach (Tema tema in temas)
-                cmbTemas.Items.Add(tema);
-
-            cmbEntrada.Items.Add(40m);
-            cmbEntrada.Items.Add(50m);
-            cmbEntrada.SelectedIndex = 0;
-        }
-
         private Endereco ObterDadosEndereco()
         {
             string cidade = txtCidade.Text;
@@ -101,25 +79,25 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             return new Endereco(rua, bairro, cidade, estado, numero);
         }
 
+
+        private void ConfigurarComboBoxes(Aluguel aluguel)
+        {
+            cmbClientes.Items.Clear();
+            cmbClientes.Items.Add(aluguel.Cliente);
+
+            cmbTemas.Items.Clear();
+            cmbTemas.Items.Add(aluguel.Tema);
+
+            cmbEntrada.Items.Add(40m);
+            cmbEntrada.Items.Add(50m);
+            cmbEntrada.SelectedIndex = 0;
+        }
+
         private void AtualizarTabelaValores()
         {
             txtValorPendente.Text = ObterAluguel().CalcularValorPendente().ToString();
             txtValorSinal.Text = ObterAluguel().CalcularValorSinal().ToString();
             txtValorDesconto.Text = ObterAluguel().CalcularValorDesconto().ToString();
-        }
-
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            Aluguel aluguel = ObterAluguel();
-
-            string[] erros = aluguel.Validar();
-
-            if (erros.Length > 0)
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
-
-                DialogResult = DialogResult.None;
-            }
         }
 
         private void AtualizarPorcentagemDesconto(object sender, EventArgs e)
@@ -129,11 +107,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             decimal porcentagemDesconto = clienteSelecionado.CalcularDesconto(configuracaoDesconto);
 
             txtPorcentagemDesconto.Text = porcentagemDesconto.ToString();
-
-            if (clienteSelecionado != null)
-                pnlTema.Enabled = true;
-            else
-                pnlTema.Enabled = false;
         }
 
         private void AtualizarValorTotal(object sender, EventArgs e)
@@ -143,11 +116,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             decimal valorTotal = temaSelecionado.CalcularValor();
 
             txtValorTema.Text = valorTotal.ToString();
-
-            if (temaSelecionado != null)
-                pnlDadosAluguel.Enabled = true;
-            else
-                pnlDadosAluguel.Enabled = false;
 
             AtualizarTabelaValores();
         }

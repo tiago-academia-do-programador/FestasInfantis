@@ -32,7 +32,7 @@ namespace FestasInfantis.WinApp.ModuloTema
             {
                 listItensTema.Items.Add(item);
 
-                if (tema.Itens.Contains(item))
+                if (tema.Itens != null && tema.Itens.Contains(item))
                     listItensTema.SetItemChecked(i, true);
 
                 i++;

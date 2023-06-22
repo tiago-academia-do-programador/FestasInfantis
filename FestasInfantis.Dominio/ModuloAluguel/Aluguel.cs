@@ -3,48 +3,32 @@ using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.Dominio.ModuloAluguel
 {
-
-    public class Endereco
-    {
-        public Endereco(string rua, string bairro, string cidade, string estado, string numero)
-        {
-            Rua = rua;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
-            Numero = numero;
-        }
-
-        public string Rua { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Numero { get; set; }
-    }
-
-    public class Festa
-    {
-        public Endereco Endereco { get; set; }
-        public DateTime Data { get; set; }
-        public TimeSpan HorarioInicio { get; set; }
-        public TimeSpan HorarioTermino { get; set; }
-
-        public Festa(Endereco endereco, DateTime data, TimeSpan horarioInicio, TimeSpan horarioTermino)
-        {
-            Endereco = endereco;
-            Data = data;
-            HorarioInicio = horarioInicio;
-            HorarioTermino = horarioTermino;
-        }
-    }
-
+    [Serializable]
     public class Aluguel : EntidadeBase<Aluguel>
     {
-        public Cliente Cliente { get; private set; }
-        public Festa Festa { get; private set; }
-        public Tema Tema { get; private set; }
-        public decimal PorcentagemSinal { get; private set; }
-        public decimal PorcentagemDesconto { get; private set; }
+        public Cliente Cliente { get; set; }
+        public Festa Festa { get; set; }
+        public Tema Tema { get; set; }
+        public decimal PorcentagemSinal { get; set; }
+        public decimal PorcentagemDesconto { get; set; }
+        public bool Concluido { get; set; }
+
+        public Aluguel()
+        {            
+        }
+
+        public Aluguel(int id, Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
+        {
+            this.id = id;
+            Cliente = cliente;
+            Festa = festa;
+            Tema = tema;
+            PorcentagemSinal = porcentagemSinal;
+            PorcentagemDesconto = porcentagemDesconto;
+            Concluido = false;
+
+            Cliente.AdicionarAluguel(this);
+        }
 
         public Aluguel(Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
         {
@@ -53,21 +37,29 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             Tema = tema;
             PorcentagemSinal = porcentagemSinal;
             PorcentagemDesconto = porcentagemDesconto;
+            Concluido = false;
+
+            Cliente.AdicionarAluguel(this);
         }
 
         public decimal CalcularValorPendente()
         {
-            return Tema.Valor - CalcularValorSinal() - CalcularValorDesconto();
+            return CalcularValorDesconto() - CalcularValorSinal();
         }
 
         public decimal CalcularValorSinal()
         {
-            return Tema.Valor * PorcentagemSinal / 100;
+            return Tema.CalcularValor() * PorcentagemSinal / 100;
         }
 
         public decimal CalcularValorDesconto()
         {
-            return Tema.Valor * PorcentagemDesconto / 100;
+            return Tema.CalcularValor() - Tema.CalcularValor() * PorcentagemDesconto / 100;
+        }
+
+        public void Concluir()
+        {
+            Concluido = true;
         }
 
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
@@ -77,11 +69,25 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             Tema = registroAtualizado.Tema;
             PorcentagemDesconto = registroAtualizado.PorcentagemDesconto;
             PorcentagemSinal = registroAtualizado.PorcentagemSinal;
+            Concluido = registroAtualizado.Concluido;
         }
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+
+            erros.AddRange(Festa.Validar());
+
+            if (Cliente == null)
+                erros.Add("O campo 'Cliente' é obrigatório");
+
+            if (Tema == null)
+                erros.Add("O campo 'Tema' é obrigatório");
+                
+            if (PorcentagemSinal <= 0)
+                erros.Add("O campo '% do Sinal' é obrigatório");
+
+            return erros.ToArray();
         }
     }
 }

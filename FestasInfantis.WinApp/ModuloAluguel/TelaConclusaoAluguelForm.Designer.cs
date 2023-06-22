@@ -1,6 +1,6 @@
 ﻿namespace FestasInfantis.WinApp.ModuloAluguel
 {
-    partial class TelaAluguelForm
+    partial class TelaConclusaoAluguelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             lblValorPendente = new Label();
             label4 = new Label();
             btnCancelar = new Button();
-            btnGravar = new Button();
+            btnConcluir = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             pnlEndereco.SuspendLayout();
@@ -135,6 +135,7 @@
             pnlEndereco.Controls.Add(txtBairro);
             pnlEndereco.Controls.Add(lblBairro);
             pnlEndereco.Controls.Add(lblCidade);
+            pnlEndereco.Enabled = false;
             pnlEndereco.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             pnlEndereco.Location = new Point(22, 157);
             pnlEndereco.Name = "pnlEndereco";
@@ -241,6 +242,7 @@
             groupBox1.Controls.Add(txtDataFesta);
             groupBox1.Controls.Add(lblData);
             groupBox1.Controls.Add(lblHorarioInicio);
+            groupBox1.Enabled = false;
             groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(25, 16);
             groupBox1.Name = "groupBox1";
@@ -329,6 +331,7 @@
             pnlCliente.Controls.Add(txtPorcentagemDesconto);
             pnlCliente.Controls.Add(label5);
             pnlCliente.Controls.Add(lblNomeCliente);
+            pnlCliente.Enabled = false;
             pnlCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             pnlCliente.Location = new Point(22, 25);
             pnlCliente.Name = "pnlCliente";
@@ -546,30 +549,29 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // btnGravar
+            // btnConcluir
             // 
-            btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnGravar.DialogResult = DialogResult.OK;
-            btnGravar.Location = new Point(392, 479);
-            btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(75, 41);
-            btnGravar.TabIndex = 12;
-            btnGravar.Text = "Gravar";
-            btnGravar.UseVisualStyleBackColor = true;
-            btnGravar.Click += btnGravar_Click;
+            btnConcluir.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnConcluir.DialogResult = DialogResult.OK;
+            btnConcluir.Location = new Point(392, 479);
+            btnConcluir.Name = "btnConcluir";
+            btnConcluir.Size = new Size(75, 41);
+            btnConcluir.TabIndex = 12;
+            btnConcluir.Text = "Concluir";
+            btnConcluir.UseVisualStyleBackColor = true;
             // 
-            // TelaAluguelForm
+            // TelaConclusaoAluguel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(585, 528);
             Controls.Add(btnCancelar);
-            Controls.Add(btnGravar);
+            Controls.Add(btnConcluir);
             Controls.Add(tabControl1);
             Controls.Add(txtId);
             Controls.Add(lblId);
-            Name = "TelaAluguelForm";
-            Text = "Cadastro de Aluguéis";
+            Name = "TelaConclusaoAluguel";
+            Text = "Conclusão de Aluguéis";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             pnlEndereco.ResumeLayout(false);
@@ -600,7 +602,7 @@
         private Label lblHorarioInicio;
         private Label lblHorarioTermino;
         private Button btnCancelar;
-        private Button btnGravar;
+        private Button btnConcluir;
         private TextBox txtCidade;
         private TextBox txtBairro;
         private Label lblBairro;

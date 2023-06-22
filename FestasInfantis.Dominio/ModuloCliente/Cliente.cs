@@ -2,27 +2,28 @@
 
 namespace FestasInfantis.Dominio.ModuloCliente
 {
+    [Serializable]
     public class Cliente : EntidadeBase<Cliente>
     {
         public string nome { get; set; }
         
-        public string telefone;
+        public string telefone { get; set; }
 
         public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
 
-        public int QuantidadeAlugueis { get => Alugueis.Count; }
+        public int QuantidadeAlugueis { get { return Alugueis.Where(x => x.Concluido).Count(); } }
 
         public Cliente()
         {
+            
         }
-
-        public Cliente(string nome, string telefone): this()
+        public Cliente(string nome, string telefone)
         {
             this.nome = nome;
             this.telefone = telefone;
         }
 
-        public Cliente(int id, string nome, string telefone): this()
+        public Cliente(int id, string nome, string telefone)
         {
             this.id = id;
             this.nome = nome;
@@ -42,7 +43,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
 
         public override string ToString()
         {
-            return $"{nome} {telefone}";
+            return $"{nome}";
         }
 
         public override string[] Validar()
@@ -64,6 +65,16 @@ namespace FestasInfantis.Dominio.ModuloCliente
                    id == cliente.id &&
                    nome == cliente.nome &&
                    telefone == cliente.telefone;
+        }
+
+        public decimal CalcularDesconto(ConfiguracaoDesconto configuracaoDesconto)
+        {
+            decimal desconto = QuantidadeAlugueis * configuracaoDesconto.PorcentagemDesconto;
+
+            if (desconto > configuracaoDesconto.PorcentagemMaxima)
+                desconto = configuracaoDesconto.PorcentagemMaxima;
+
+            return desconto;
         }
     }
 }

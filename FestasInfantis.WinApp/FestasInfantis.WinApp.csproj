@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FestasInfantis.Dominio\FestasInfantis.Dominio.csproj" />
+    <ProjectReference Include="..\FestasInfantis.Infra.Dados.Arquivo\FestasInfantis.Infra.Dados.Arquivo.csproj" />
     <ProjectReference Include="..\FestasInfantis.Infra.Dados.Memoria\FestasInfantis.Infra.Dados.Memoria.csproj" />
   </ItemGroup>
 
@@ -26,6 +27,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Compartilhado\Configuracoes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Compartilhado\FestasInfantis.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

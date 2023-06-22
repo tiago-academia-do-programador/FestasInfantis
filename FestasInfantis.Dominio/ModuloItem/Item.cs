@@ -1,10 +1,15 @@
 ﻿namespace FestasInfantis.Dominio.ModuloItem
 {
+    [Serializable]
     public class Item : EntidadeBase<Item>
     {
         public string descricao;
         public decimal valor;
 
+        public Item()
+        {
+            
+        }
         public Item(int id, string descricao, decimal valor)
         {
             this.id = id;

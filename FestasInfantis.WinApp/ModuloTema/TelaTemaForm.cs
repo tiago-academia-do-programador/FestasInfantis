@@ -25,18 +25,16 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             string nome = txtNome.Text;
 
-            List<Item> itens = new List<Item>();
+            Tema tema = new Tema(nome);
 
             foreach (DataGridViewRow linha in gridItens.Rows)
             {
                 int idItem = Convert.ToInt32(linha.Cells[0].Value);
-                string descricao = Convert.ToString(linha.Cells[1].Value);
-                decimal valor = Convert.ToDecimal(linha.Cells[2].Value);
 
-                itens.Add(new Item(idItem, descricao, valor));
+                Item item = itensDisponiveis.Find(x => x.id == idItem);
+
+                tema.AdicionarItem(item);
             }
-
-            Tema tema = new Tema(nome, itens);
 
             if (id > 0)
                 tema.id = id;
@@ -94,7 +92,7 @@ namespace FestasInfantis.WinApp.ModuloTema
 
             txtNome.Text = tema.nome;
 
-            txtValor.Text = tema.Valor.ToString();
+            txtValor.Text = tema.CalcularValor().ToString();
 
             ConfigurarGridItens(tema.Itens);
         }
