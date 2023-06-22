@@ -15,6 +15,9 @@ namespace FestasInfantis.Dominio.ModuloTema
 
         public void AdicionarItem(Item item)
         {
+            if (Itens == null)
+                Itens = new List<Item>();
+
             Itens.Add(item);
         }
 
