@@ -11,7 +11,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
 
         public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
 
-        public int QuantidadeAlugueis { get { return Alugueis.Where(x => x.Concluido).Count(); } }
+        public int QuantidadeAlugueis { get { return Alugueis.Where(x => x.PagamentoConcluido).Count(); } }
 
         public Cliente()
         {
@@ -32,6 +32,9 @@ namespace FestasInfantis.Dominio.ModuloCliente
 
         public void AdicionarAluguel(Aluguel aluguel)
         {
+            if (Alugueis == null)
+                Alugueis = new List<Aluguel>();
+
             Alugueis.Add(aluguel);
         }
 
@@ -39,6 +42,7 @@ namespace FestasInfantis.Dominio.ModuloCliente
         {
             this.nome = registroAtualizado.nome;
             this.telefone = registroAtualizado.telefone;
+            this.Alugueis = registroAtualizado.Alugueis;
         }
 
         public override string ToString()
@@ -59,13 +63,6 @@ namespace FestasInfantis.Dominio.ModuloCliente
             return erros.ToArray();
         }
 
-        public override bool Equals(object? obj)
-        {
-            return obj is Cliente cliente &&
-                   id == cliente.id &&
-                   nome == cliente.nome &&
-                   telefone == cliente.telefone;
-        }
 
         public decimal CalcularDesconto(ConfiguracaoDesconto configuracaoDesconto)
         {
@@ -75,6 +72,16 @@ namespace FestasInfantis.Dominio.ModuloCliente
                 desconto = configuracaoDesconto.PorcentagemMaxima;
 
             return desconto;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Cliente cliente &&
+                   id == cliente.id &&
+                   nome == cliente.nome &&
+                   telefone == cliente.telefone &&
+                   EqualityComparer<List<Aluguel>>.Default.Equals(Alugueis, cliente.Alugueis) &&
+                   QuantidadeAlugueis == cliente.QuantidadeAlugueis;
         }
     }
 }

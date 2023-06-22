@@ -56,7 +56,9 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Aluguel aluguel = telaAluguel.ObterAluguel();                
+                Aluguel aluguel = telaAluguel.ObterAluguel();
+
+                repositorioCliente.RegistrarAluguelDoCliente(aluguel.Cliente, aluguel);
 
                 repositorioAluguel.Inserir(aluguel);
                 
@@ -167,7 +169,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
                 return;
             }
 
-            if (aluguel.Concluido)
+            if (aluguel.PagamentoConcluido)
             {
                 MessageBox.Show($"O aluguel já está concluído!",
                     "Conclusão de Alugueis",
@@ -243,6 +245,5 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             return repositorioAluguel.SelecionarPorId(id);
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using FestasInfantis.Dominio.ModuloCliente;
+﻿using FestasInfantis.Dominio.ModuloAluguel;
+using FestasInfantis.Dominio.ModuloCliente;
 
 namespace FestasInfantis.Infra.Dados.Memoria.ModuloCliente
 {
@@ -11,6 +12,13 @@ namespace FestasInfantis.Infra.Dados.Memoria.ModuloCliente
         protected override List<Cliente> ObterRegistros()
         {
             return contextoDados.clientes;
+        }
+
+        public void RegistrarAluguelDoCliente(Cliente cliente, Aluguel aluguelEfetuado)
+        {
+            cliente.AdicionarAluguel(aluguelEfetuado);
+
+            Editar(cliente.id, cliente);
         }
     }
 }

@@ -11,13 +11,13 @@ namespace FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel
         public List<Aluguel> SelecionarConcluidas()
         {
             return ObterRegistros()
-                .Where(x => x.Concluido).ToList();
+                .Where(x => x.PagamentoConcluido).ToList();
         }
 
         public List<Aluguel> SelecionarPendentes()
         {
             return ObterRegistros()
-                .Where(x => x.Concluido == false).ToList();
+                .Where(x => x.PagamentoConcluido == false).ToList();
         }
 
         protected override List<Aluguel> ObterRegistros()

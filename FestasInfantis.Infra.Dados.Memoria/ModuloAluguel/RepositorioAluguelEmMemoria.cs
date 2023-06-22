@@ -11,13 +11,12 @@ namespace FestasInfantis.Infra.Dados.Memoria.ModuloAluguel
 
         public List<Aluguel> SelecionarConcluidas()
         {
-            return listaRegistros.FindAll(aluguel => aluguel.Concluido);
+            return listaRegistros.FindAll(aluguel => aluguel.PagamentoConcluido);
         }
 
         public List<Aluguel> SelecionarPendentes()
         {
-            return listaRegistros.FindAll(aluguel => !aluguel.Concluido);
-
+            return listaRegistros.FindAll(aluguel => !aluguel.PagamentoConcluido);
         }
     }
 }
