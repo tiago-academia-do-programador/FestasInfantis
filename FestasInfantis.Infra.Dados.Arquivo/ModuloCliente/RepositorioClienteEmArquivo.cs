@@ -1,6 +1,6 @@
 ﻿using FestasInfantis.Dominio.ModuloCliente;
 
-namespace FestasInfantis.Infra.Dados.Memoria.ModuloCliente
+namespace FestasInfantis.Infra.Dados.Arquivo.ModuloCliente
 {
     public class RepositorioClienteEmArquivo : RepositorioEmArquivoBase<Cliente>, IRepositorioCliente
     {

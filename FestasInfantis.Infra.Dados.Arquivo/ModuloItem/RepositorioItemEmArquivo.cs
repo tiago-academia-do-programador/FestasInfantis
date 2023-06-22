@@ -1,6 +1,6 @@
 ﻿using FestasInfantis.Dominio.ModuloItem;
 
-namespace FestasInfantis.Infra.Dados.Memoria.ModuloItem
+namespace FestasInfantis.Infra.Dados.Arquivo.ModuloItem
 {
     public class RepositorioItemEmArquivo : RepositorioEmArquivoBase<Item>, IRepositorioItem
     {
