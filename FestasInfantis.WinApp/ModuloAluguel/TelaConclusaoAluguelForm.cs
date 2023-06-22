@@ -4,11 +4,11 @@ using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.WinApp.ModuloAluguel
 {
-    public partial class TelaConclusaoAluguel : Form
+    public partial class TelaConclusaoAluguelForm : Form
     {
         private ConfiguracaoDesconto configuracaoDesconto;
 
-        public TelaConclusaoAluguel(Aluguel aluguel, ConfiguracaoDesconto configuracaoDesconto)
+        public TelaConclusaoAluguelForm(Aluguel aluguel, ConfiguracaoDesconto configuracaoDesconto)
         {
             InitializeComponent();
 

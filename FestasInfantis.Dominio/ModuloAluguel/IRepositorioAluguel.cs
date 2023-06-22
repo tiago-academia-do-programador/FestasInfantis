@@ -7,5 +7,7 @@
         void Excluir(Aluguel aluguelSelecionado);
         List<Aluguel> SelecionarTodos();
         Aluguel SelecionarPorId(int id);
+        List<Aluguel> SelecionarConcluidas();
+        List<Aluguel> SelecionarPendentes();
     }
 }

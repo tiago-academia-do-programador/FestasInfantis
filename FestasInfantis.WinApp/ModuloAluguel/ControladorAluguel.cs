@@ -31,6 +31,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         public override string ToolTipEditar { get { return "Editar Aluguel existente"; } }
             
         public override string ToolTipExcluir { get { return "Excluir Aluguel existente"; } }
+
         public override string ToolTipFiltrar { get { return "Filtrar Alugueis"; } }
         
         public override string ToolTipConcluirAluguel { get { return "Concluir Aluguel"; } }
@@ -119,9 +120,38 @@ namespace FestasInfantis.WinApp.ModuloAluguel
                 repositorioAluguel.Excluir(aluguel);
                 CarregarAlugueis();
             }
-
         }
 
+        public override void Filtrar()
+        {
+            TelaFiltroAluguelForm telaFiltroAluguel = new TelaFiltroAluguelForm();
+
+            DialogResult opcaoEscolhida = telaFiltroAluguel.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                List<Aluguel> alugueis;
+
+                StatusAluguelEnum status = telaFiltroAluguel.ObterFiltroAluguel();
+
+                switch (status)
+                {
+                    case StatusAluguelEnum.Pendentes:
+                        alugueis = repositorioAluguel.SelecionarPendentes();
+                        break;
+
+                    case StatusAluguelEnum.Concluidos:
+                        alugueis = repositorioAluguel.SelecionarConcluidas();
+                        break;
+
+                    default:
+                        alugueis = repositorioAluguel.SelecionarTodos();
+                        break;
+                }
+
+                CarregarAlugueis(alugueis);
+            }
+        }
 
         public void ConcluirAluguel()
         {
@@ -147,8 +177,8 @@ namespace FestasInfantis.WinApp.ModuloAluguel
                 return;
             }
 
-            TelaConclusaoAluguel telaConclusaoAluguel =
-                new TelaConclusaoAluguel(aluguel, repositorioDesconto.ObterConfiguracao());
+            TelaConclusaoAluguelForm telaConclusaoAluguel =
+                new TelaConclusaoAluguelForm(aluguel, repositorioDesconto.ObterConfiguracao());
 
             DialogResult opcaoEscolhida = telaConclusaoAluguel.ShowDialog();
 
@@ -168,7 +198,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         {
             ConfiguracaoDesconto configuracao = repositorioDesconto.ObterConfiguracao();
 
-            TelaConfiguracaoDesconto telaConfiguracao = new TelaConfiguracaoDesconto(configuracao);
+            TelaConfiguracaoDescontoForm telaConfiguracao = new TelaConfiguracaoDescontoForm(configuracao);
 
             DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
 
@@ -199,6 +229,11 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         {
             List<Aluguel> alugueis = repositorioAluguel.SelecionarTodos();
 
+            tabelaAlugueis.AtualizarRegistros(alugueis);
+        }
+
+        private void CarregarAlugueis(List<Aluguel> alugueis)
+        {
             tabelaAlugueis.AtualizarRegistros(alugueis);
         }
 

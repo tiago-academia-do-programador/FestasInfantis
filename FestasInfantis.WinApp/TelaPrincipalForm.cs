@@ -129,7 +129,7 @@ namespace FestasInfantis.WinApp
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
-            btnVisualizarAlugueis.ToolTipText = controlador.ToolTipVisualizarAlugueis;
+            btnVisualizarAlugueisCliente.ToolTipText = controlador.ToolTipVisualizarAlugueis;
             btnConcluirAluguel.ToolTipText = controlador.ToolTipConcluirAluguel;
             btnConfigurarDescontos.ToolTipText = controlador.ToolTipConfigurarDescontos;
         }
@@ -141,7 +141,7 @@ namespace FestasInfantis.WinApp
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnAdicionarItens.Enabled = controlador.AdicionarItensHabilitado;
-            btnVisualizarAlugueis.Enabled = controlador.VisualizarAlugueisHabilitado;
+            btnVisualizarAlugueisCliente.Enabled = controlador.VisualizarAlugueisHabilitado;
             btnConcluirAluguel.Enabled = controlador.ConcluirAluguelHabilitado;
             btnConfigurarDescontos.Enabled = controlador.ConfigurarDescontosHabilitado;
         }
@@ -170,12 +170,6 @@ namespace FestasInfantis.WinApp
         {
             controlador.Adicionar();
         }
-
-        private void btnConcluirItens_Click(object sender, EventArgs e)
-        {
-            controlador.ConcluirItens();
-        }
-
 
         private void btnConcluirAluguel_Click(object sender, EventArgs e)
         {

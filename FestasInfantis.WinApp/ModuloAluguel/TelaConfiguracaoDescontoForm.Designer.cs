@@ -1,6 +1,6 @@
 ﻿namespace FestasInfantis.WinApp
 {
-    partial class TelaConfiguracaoDesconto
+    partial class TelaConfiguracaoDescontoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(314, 211);
+            groupBox1.Size = new Size(314, 178);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Porcentagens de Desconto:";
@@ -97,7 +97,7 @@
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(251, 241);
+            btnCancelar.Location = new Point(251, 202);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 41);
             btnCancelar.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGravar.DialogResult = DialogResult.OK;
-            btnGravar.Location = new Point(170, 241);
+            btnGravar.Location = new Point(170, 202);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 41);
             btnGravar.TabIndex = 5;
@@ -120,7 +120,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(338, 294);
+            ClientSize = new Size(338, 255);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(groupBox1);

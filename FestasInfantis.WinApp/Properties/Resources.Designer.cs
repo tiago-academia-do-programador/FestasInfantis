@@ -83,16 +83,6 @@ namespace FestasInfantis.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap config {
-            get {
-                object obj = ResourceManager.GetObject("config", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap delete_FILL0_wght400_GRAD0_opsz24 {
             get {
                 object obj = ResourceManager.GetObject("delete_FILL0_wght400_GRAD0_opsz24", resourceCulture);
@@ -133,9 +123,9 @@ namespace FestasInfantis.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap person_search_FILL0_wght400_GRAD0_opsz48 {
+        internal static System.Drawing.Bitmap person_search_FILL0_wght400_GRAD0_opsz24 {
             get {
-                object obj = ResourceManager.GetObject("person_search_FILL0_wght400_GRAD0_opsz48", resourceCulture);
+                object obj = ResourceManager.GetObject("person_search_FILL0_wght400_GRAD0_opsz24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +133,19 @@ namespace FestasInfantis.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap settings_FILL0_wght400_GRAD0_opsz48 {
+        internal static System.Drawing.Bitmap settings_FILL0_wght400_GRAD0_opsz24 {
             get {
-                object obj = ResourceManager.GetObject("settings_FILL0_wght400_GRAD0_opsz48", resourceCulture);
+                object obj = ResourceManager.GetObject("settings_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shopping_cart_checkout_FILL0_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("shopping_cart_checkout_FILL0_wght400_GRAD0_opsz24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

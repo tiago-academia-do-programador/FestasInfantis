@@ -26,6 +26,11 @@ namespace FestasInfantis.Dominio.ModuloTema
             return Itens.Aggregate(0m, (soma, item) => soma + item.valor);
         }
 
+        public void AtualizarItens(List<Item> itens)
+        {
+            Itens = itens;
+        }
+
         public override void AtualizarInformacoes(Tema registroAtualizado)
         {
             this.id = registroAtualizado.id;

@@ -2,9 +2,9 @@
 
 namespace FestasInfantis.WinApp
 {
-    public partial class TelaConfiguracaoDesconto : Form
+    public partial class TelaConfiguracaoDescontoForm : Form
     {
-        public TelaConfiguracaoDesconto(ConfiguracaoDesconto config)
+        public TelaConfiguracaoDescontoForm(ConfiguracaoDesconto config)
         {
             InitializeComponent();
 

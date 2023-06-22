@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             menuStrip1 = new MenuStrip();
             cadastrosMenuItem = new ToolStripMenuItem();
             clientesMenuItem = new ToolStripMenuItem();
@@ -47,13 +46,12 @@
             toolStripSeparator3 = new ToolStripSeparator();
             btnAdicionarItens = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            btnVisualizarAlugueis = new ToolStripButton();
-            toolStripSeparator4 = new ToolStripSeparator();
+            btnVisualizarAlugueisCliente = new ToolStripButton();
+            btnConcluirAluguel = new ToolStripButton();
             btnConfigurarDescontos = new ToolStripButton();
             toolStripSeparator5 = new ToolStripSeparator();
             labelTipoCadastro = new ToolStripLabel();
             panelRegistros = new Panel();
-            btnConcluirAluguel = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             barraFerramentas.SuspendLayout();
@@ -128,7 +126,7 @@
             // barraFerramentas
             // 
             barraFerramentas.Enabled = false;
-            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, toolStripSeparator1, btnVisualizarAlugueis, toolStripSeparator4, btnConcluirAluguel, btnConfigurarDescontos, toolStripSeparator5, labelTipoCadastro });
+            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnFiltrar, toolStripSeparator3, btnAdicionarItens, toolStripSeparator1, btnVisualizarAlugueisCliente, btnConcluirAluguel, btnConfigurarDescontos, toolStripSeparator5, labelTipoCadastro });
             barraFerramentas.Location = new Point(0, 24);
             barraFerramentas.Name = "barraFerramentas";
             barraFerramentas.Size = new Size(800, 45);
@@ -205,30 +203,37 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 45);
             // 
-            // btnVisualizarAlugueis
+            // btnVisualizarAlugueisCliente
             // 
-            btnVisualizarAlugueis.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnVisualizarAlugueis.Image = Properties.Resources.check_box_FILL0_wght400_GRAD0_opsz24;
-            btnVisualizarAlugueis.ImageScaling = ToolStripItemImageScaling.None;
-            btnVisualizarAlugueis.ImageTransparentColor = Color.Magenta;
-            btnVisualizarAlugueis.Name = "btnVisualizarAlugueis";
-            btnVisualizarAlugueis.Padding = new Padding(7);
-            btnVisualizarAlugueis.Size = new Size(42, 42);
-            btnVisualizarAlugueis.Click += btnVisualizarAlugueis_Click;
+            btnVisualizarAlugueisCliente.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizarAlugueisCliente.Image = Properties.Resources.person_search_FILL0_wght400_GRAD0_opsz24;
+            btnVisualizarAlugueisCliente.ImageScaling = ToolStripItemImageScaling.None;
+            btnVisualizarAlugueisCliente.ImageTransparentColor = Color.Magenta;
+            btnVisualizarAlugueisCliente.Name = "btnVisualizarAlugueisCliente";
+            btnVisualizarAlugueisCliente.Padding = new Padding(7);
+            btnVisualizarAlugueisCliente.Size = new Size(42, 42);
+            btnVisualizarAlugueisCliente.Click += btnVisualizarAlugueis_Click;
             // 
-            // toolStripSeparator4
+            // btnConcluirAluguel
             // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 45);
+            btnConcluirAluguel.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnConcluirAluguel.Image = Properties.Resources.shopping_cart_checkout_FILL0_wght400_GRAD0_opsz24;
+            btnConcluirAluguel.ImageScaling = ToolStripItemImageScaling.None;
+            btnConcluirAluguel.ImageTransparentColor = Color.Magenta;
+            btnConcluirAluguel.Name = "btnConcluirAluguel";
+            btnConcluirAluguel.Padding = new Padding(7);
+            btnConcluirAluguel.Size = new Size(42, 42);
+            btnConcluirAluguel.Click += btnConcluirAluguel_Click;
             // 
             // btnConfigurarDescontos
             // 
             btnConfigurarDescontos.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnConfigurarDescontos.Image = (Image)resources.GetObject("btnConfigurarDescontos.Image");
+            btnConfigurarDescontos.Image = Properties.Resources.settings_FILL0_wght400_GRAD0_opsz24;
+            btnConfigurarDescontos.ImageScaling = ToolStripItemImageScaling.None;
             btnConfigurarDescontos.ImageTransparentColor = Color.Magenta;
             btnConfigurarDescontos.Name = "btnConfigurarDescontos";
-            btnConfigurarDescontos.Size = new Size(23, 42);
-            btnConfigurarDescontos.Text = "btnConfigurarDescontos";
+            btnConfigurarDescontos.Padding = new Padding(7);
+            btnConfigurarDescontos.Size = new Size(42, 42);
             btnConfigurarDescontos.Click += btnConfigurarDescontos_Click;
             // 
             // toolStripSeparator5
@@ -250,16 +255,6 @@
             panelRegistros.Name = "panelRegistros";
             panelRegistros.Size = new Size(800, 359);
             panelRegistros.TabIndex = 3;
-            // 
-            // btnConcluirAluguel
-            // 
-            btnConcluirAluguel.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnConcluirAluguel.Image = (Image)resources.GetObject("btnConcluirAluguel.Image");
-            btnConcluirAluguel.ImageTransparentColor = Color.Magenta;
-            btnConcluirAluguel.Name = "btnConcluirAluguel";
-            btnConcluirAluguel.Size = new Size(23, 42);
-            btnConcluirAluguel.Text = "btnConfigurarDescontos";
-            btnConcluirAluguel.Click += btnConcluirAluguel_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -310,11 +305,10 @@
         private ToolStripButton btnFiltrar;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton btnAdicionarItens;
-        private ToolStripButton btnVisualizarAlugueis;
-        private ToolStripMenuItem itensToolStripMenuItem;
         private ToolStripButton btnConfigurarDescontos;
-        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem itensToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator5;
+        private ToolStripButton btnVisualizarAlugueisCliente;
         private ToolStripButton btnConcluirAluguel;
     }
 }
