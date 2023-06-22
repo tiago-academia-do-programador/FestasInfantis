@@ -1,5 +1,6 @@
 ﻿namespace FestasInfantis.Dominio.ModuloAluguel
 {
+    [Serializable]
     public class ConfiguracaoDesconto
     {
         public decimal PorcentagemDesconto { get; set; }
@@ -7,6 +8,8 @@
 
         public ConfiguracaoDesconto()
         {
+            PorcentagemDesconto = 1.5m;
+            PorcentagemMaxima = 20;
         }
 
         public ConfiguracaoDesconto(decimal porcentagemPorDesconto, decimal porcentagemMaxima)

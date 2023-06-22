@@ -3,9 +3,8 @@ using FestasInfantis.Dominio.ModuloCliente;
 using FestasInfantis.Dominio.ModuloItem;
 using FestasInfantis.Dominio.ModuloTema;
 using FestasInfantis.Infra.Dados.Arquivo.Compartilhado;
+using FestasInfantis.Infra.Dados.Arquivo.ModuleTema;
 using FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel;
-using FestasInfantis.Infra.Dados.Memoria.ModuleTema;
-using FestasInfantis.Infra.Dados.Memoria.ModuloAluguel;
 using FestasInfantis.Infra.Dados.Memoria.ModuloCliente;
 using FestasInfantis.Infra.Dados.Memoria.ModuloItem;
 using FestasInfantis.WinApp.ModuloAluguel;
@@ -21,20 +20,15 @@ namespace FestasInfantis.WinApp
 
         private static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
 
-        private IRepositorioConfiguracaoDesconto repositorioDesconto =
-            new RepositorioConfiguracaoDesconto(contextoDados);
+        private IRepositorioConfiguracaoDesconto repositorioDesconto = new RepositorioConfiguracaoEmArquivo(carregarDados: true);
 
-        private IRepositorioCliente repositorioCliente =
-            new RepositorioClienteEmMemoria(ConfigurarClientes());
+        private IRepositorioCliente repositorioCliente = new RepositorioClienteEmArquivo(contextoDados);
 
-        private IRepositorioItem repositorioItem =
-            new RepositorioItemEmMemoria(ConfigurarItens());
+        private IRepositorioItem repositorioItem = new RepositorioItemEmArquivo(contextoDados);
 
-        private IRepositorioTema repositorioTema =
-            new RepositorioTemaEmMemoria(ConfigurarTemas());
+        private IRepositorioTema repositorioTema = new RepositorioTemaEmArquivo(contextoDados);
 
-        private IRepositorioAluguel repositorioAluguel =
-            new RepositorioAluguelEmMemoria(ConfigurarAlugueis());
+        private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelEmArquivo(contextoDados);
 
         private static TelaPrincipalForm telaPrincipal;
 

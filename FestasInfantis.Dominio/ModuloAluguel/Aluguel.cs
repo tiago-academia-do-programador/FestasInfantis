@@ -3,14 +3,19 @@ using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.Dominio.ModuloAluguel
 {
+    [Serializable]
     public class Aluguel : EntidadeBase<Aluguel>
     {
-        public Cliente Cliente { get; private set; }
-        public Festa Festa { get; private set; }
-        public Tema Tema { get; private set; }
-        public decimal PorcentagemSinal { get; private set; }
-        public decimal PorcentagemDesconto { get; private set; }
-        public bool Concluido { get; private set; }
+        public Cliente Cliente { get; set; }
+        public Festa Festa { get; set; }
+        public Tema Tema { get; set; }
+        public decimal PorcentagemSinal { get; set; }
+        public decimal PorcentagemDesconto { get; set; }
+        public bool Concluido { get; set; }
+
+        public Aluguel()
+        {            
+        }
 
         public Aluguel(int id, Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
         {
@@ -21,6 +26,8 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             PorcentagemSinal = porcentagemSinal;
             PorcentagemDesconto = porcentagemDesconto;
             Concluido = false;
+
+            Cliente.AdicionarAluguel(this);
         }
 
         public Aluguel(Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
@@ -31,6 +38,8 @@ namespace FestasInfantis.Dominio.ModuloAluguel
             PorcentagemSinal = porcentagemSinal;
             PorcentagemDesconto = porcentagemDesconto;
             Concluido = false;
+
+            Cliente.AdicionarAluguel(this);
         }
 
         public decimal CalcularValorPendente()

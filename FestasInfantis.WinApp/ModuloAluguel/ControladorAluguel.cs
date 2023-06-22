@@ -48,7 +48,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
         {
             TelaAluguelForm telaAluguel = 
                 new TelaAluguelForm(
-                    repositorioDesconto.ObterConfiguracao(),
+                    repositorioDesconto.ObterConfiguracaoDeDesconto(),
                     repositorioCliente.SelecionarTodos(),
                     repositorioTema.SelecionarTodos());
 
@@ -56,7 +56,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Aluguel aluguel = telaAluguel.ObterAluguel();
+                Aluguel aluguel = telaAluguel.ObterAluguel();                
 
                 repositorioAluguel.Inserir(aluguel);
                 
@@ -80,7 +80,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             TelaAluguelForm telaAluguel =
                 new TelaAluguelForm(
-                    repositorioDesconto.ObterConfiguracao(),
+                    repositorioDesconto.ObterConfiguracaoDeDesconto(),
                     repositorioCliente.SelecionarTodos(),
                     repositorioTema.SelecionarTodos());
 
@@ -178,7 +178,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             }
 
             TelaConclusaoAluguelForm telaConclusaoAluguel =
-                new TelaConclusaoAluguelForm(aluguel, repositorioDesconto.ObterConfiguracao());
+                new TelaConclusaoAluguelForm(aluguel, repositorioDesconto.ObterConfiguracaoDeDesconto());
 
             DialogResult opcaoEscolhida = telaConclusaoAluguel.ShowDialog();
 
@@ -196,7 +196,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
         public void ConfigurarDescontos()
         {
-            ConfiguracaoDesconto configuracao = repositorioDesconto.ObterConfiguracao();
+            ConfiguracaoDesconto configuracao = repositorioDesconto.ObterConfiguracaoDeDesconto();
 
             TelaConfiguracaoDescontoForm telaConfiguracao = new TelaConfiguracaoDescontoForm(configuracao);
 
@@ -206,7 +206,7 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             {
                 ConfiguracaoDesconto novaConfiguracao = telaConfiguracao.ObterConfiguracaoDesconto();
 
-                repositorioDesconto.GravarMudancas(novaConfiguracao);
+                repositorioDesconto.GravarConfiguracoesDesconto(novaConfiguracao);
             }
         }
 

@@ -2,15 +2,21 @@
 
 namespace FestasInfantis.Dominio.ModuloCliente
 {
+    [Serializable]
     public class Cliente : EntidadeBase<Cliente>
     {
         public string nome { get; set; }
         
-        public string telefone;
+        public string telefone { get; set; }
 
         public List<Aluguel> Alugueis { get; set; } = new List<Aluguel>();
-        public int QuantidadeAlugueis { get { return Alugueis.Count; } }
 
+        public int QuantidadeAlugueis { get { return Alugueis.Where(x => x.Concluido).Count(); } }
+
+        public Cliente()
+        {
+            
+        }
         public Cliente(string nome, string telefone)
         {
             this.nome = nome;

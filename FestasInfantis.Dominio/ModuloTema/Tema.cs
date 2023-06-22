@@ -2,17 +2,32 @@
 
 namespace FestasInfantis.Dominio.ModuloTema
 {
+    [Serializable]
     public class Tema : EntidadeBase<Tema>
     {
         public string nome;
 
         public List<Item> Itens { get; set; }
 
+        public Tema()
+        {            
+        }
+
+        public void AdicionarItem(Item item)
+        {
+            Itens.Add(item);
+        }
+
         public Tema(int id, string descricao, List<Item> itens)
         {
             this.id = id;
             nome = descricao;
             Itens = itens;
+        }
+
+        public Tema(string descricao)
+        {
+            nome = descricao;
         }
 
         public Tema(string descricao, List<Item> itens)

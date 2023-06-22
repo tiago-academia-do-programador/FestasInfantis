@@ -1,11 +1,16 @@
 ﻿namespace FestasInfantis.Dominio.ModuloAluguel
 {
+    [Serializable]
     public class Festa
     {
         public Endereco Endereco { get; set; }
         public DateTime Data { get; set; }
         public TimeSpan HorarioInicio { get; set; }
         public TimeSpan HorarioTermino { get; set; }
+
+        public Festa()
+        {            
+        }
 
         public Festa(Endereco endereco, DateTime data, TimeSpan horarioInicio, TimeSpan horarioTermino)
         {
