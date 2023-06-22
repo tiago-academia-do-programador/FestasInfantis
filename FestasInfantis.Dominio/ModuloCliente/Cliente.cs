@@ -30,10 +30,13 @@ namespace FestasInfantis.Dominio.ModuloCliente
             this.telefone = telefone;
         }
 
-        public void AdicionarAluguel(Aluguel aluguel)
+        public void RegistrarAluguel(Aluguel aluguel)
         {
             if (Alugueis == null)
                 Alugueis = new List<Aluguel>();
+
+            if (Alugueis.Contains(aluguel))
+                return;
 
             Alugueis.Add(aluguel);
         }

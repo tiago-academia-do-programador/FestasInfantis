@@ -58,8 +58,6 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
 
-                repositorioCliente.RegistrarAluguelDoCliente(aluguel.Cliente, aluguel);
-
                 repositorioAluguel.Inserir(aluguel);
                 
                 CarregarAlugueis();
@@ -186,11 +184,9 @@ namespace FestasInfantis.WinApp.ModuloAluguel
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Aluguel aluguelParaConclusao = telaConclusaoAluguel.ObterAluguel();
+                aluguel.Concluir();
 
-                aluguelParaConclusao.Concluir();
-
-                repositorioAluguel.Editar(aluguelParaConclusao.id, aluguelParaConclusao);
+                repositorioAluguel.Editar(aluguel.id, aluguel);
             }
 
             CarregarAlugueis();

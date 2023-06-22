@@ -16,7 +16,7 @@ namespace FestasInfantis.Infra.Dados.Memoria.ModuloCliente
 
         public void RegistrarAluguelDoCliente(Cliente cliente, Aluguel aluguelEfetuado)
         {
-            cliente.AdicionarAluguel(aluguelEfetuado);
+            cliente.RegistrarAluguel(aluguelEfetuado);
 
             Editar(cliente.id, cliente);
         }
