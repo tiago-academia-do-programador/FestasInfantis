@@ -1,7 +1,6 @@
 ﻿using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
 using FestasInfantis.Dominio.ModuloTema;
-using FestasInfantis.WinApp.ModuloCliente;
 
 namespace FestasInfantis.WinApp.ModuloAluguel
 {
@@ -71,7 +70,17 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             if (aluguel == null)
             {
                 MessageBox.Show($"Selecione um aluguel primeiro!",
-                    "Edição de Aluguel",
+                    "Edição de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            else if (aluguel.PagamentoConcluido)
+            {
+                MessageBox.Show($"Não é possível editar os dados de um aluguel concluído.",
+                    "Edição de Aluguéis",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -105,7 +114,17 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             if (aluguel == null)
             {
                 MessageBox.Show($"Selecione um aluguel primeiro!",
-                    "Exclusão de Alugueis",
+                    "Exclusão de Aluguéis",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            else if (aluguel.PagamentoConcluido == false)
+            {
+                MessageBox.Show($"Não é possível excluir os dados de um aluguel em aberto.",
+                    "Exclusão de Aluguéis",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -160,17 +179,17 @@ namespace FestasInfantis.WinApp.ModuloAluguel
             if (aluguel == null)
             {
                 MessageBox.Show($"Selecione um aluguel primeiro!",
-                    "Conclusão de Alugueis",
+                    "Conclusão de Aluguéis",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
 
-            if (aluguel.PagamentoConcluido)
+            else if (aluguel.PagamentoConcluido)
             {
                 MessageBox.Show($"O aluguel já está concluído!",
-                    "Conclusão de Alugueis",
+                    "Conclusão de Aluguéis",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 

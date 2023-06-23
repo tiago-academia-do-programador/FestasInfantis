@@ -1,5 +1,6 @@
 ﻿using FestasInfantis.Dominio.ModuloAluguel;
 using FestasInfantis.Dominio.ModuloCliente;
+using FestasInfantis.Dominio.ModuloTema;
 
 namespace FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel
 {
@@ -42,6 +43,18 @@ namespace FestasInfantis.Infra.Dados.Arquivo.ModuloAluguel
         protected override List<Aluguel> ObterRegistros()
         {
             return contextoDados.alugueis;
+        }
+
+        public bool VerificarAlugueisAbertosCliente(Cliente cliente)
+        {
+            return ObterRegistros()
+                .Any(aluguel => aluguel.PagamentoConcluido == false && aluguel.Cliente == cliente) == false;
+        }
+
+        public bool VerificarTemasIndisponiveis(Tema tema)
+        {
+            return ObterRegistros()
+                .Any(aluguel => aluguel.PagamentoConcluido == false && aluguel.Tema == tema) == false;
         }
     }
 }
