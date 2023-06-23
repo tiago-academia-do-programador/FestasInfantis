@@ -15,18 +15,7 @@ namespace FestasInfantis.Dominio.ModuloAluguel
         public bool PagamentoConcluido { get; set; }
 
         public Aluguel()
-        {            
-        }
-
-        public Aluguel(int id, Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)
         {
-            this.id = id;
-            Cliente = cliente;
-            Festa = festa;
-            Tema = tema;
-            PorcentagemSinal = porcentagemSinal;
-            PorcentagemDesconto = porcentagemDesconto;
-            PagamentoConcluido = false;
         }
 
         public Aluguel(Cliente cliente, Festa festa, Tema tema, decimal porcentagemSinal, decimal porcentagemDesconto)

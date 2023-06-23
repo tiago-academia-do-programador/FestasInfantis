@@ -23,13 +23,6 @@ namespace FestasInfantis.Dominio.ModuloCliente
             this.telefone = telefone;
         }
 
-        public Cliente(int id, string nome, string telefone)
-        {
-            this.id = id;
-            this.nome = nome;
-            this.telefone = telefone;
-        }
-
         public void RegistrarAluguel(Aluguel aluguel)
         {
             if (Alugueis == null)
